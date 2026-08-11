@@ -1,0 +1,28 @@
+# Operating System Files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.apple_names
+.apple_double
+._*
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / Dependencies (if added in the future)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.log
