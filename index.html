@@ -7,6 +7,8 @@
   <meta name="theme-color" content="#0b8fbe">
   <meta name="description" content="GoGoUmi paradise｜興居島で過ごす、いつもよりちょっと贅沢な時間。海の家・BBQ・島時間。">
   <title>GoGoUmi paradise｜海の虜</title>
+  <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+  <link rel="apple-touch-icon" href="images/logo.jpeg">
   <style>
     :root {
       --blue: #0798cf;
@@ -16,6 +18,8 @@
       --ink: #15313e;
       --white: #fff;
       --line: rgba(6, 59, 87, .12);
+      --accent: #f26b3a;
+      --accent-light: #fff4f0;
     }
 
     * {
@@ -77,11 +81,40 @@
       color: #fff;
       font-weight: 800;
       letter-spacing: .08em;
-      font-size: 15px
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35));
+      flex-shrink: 0;
+    }
+
+    .brand-mark-scrolled {
+      display: none;
+    }
+
+    .brand-mark-white {
+      display: block;
     }
 
     .scrolled .brand {
-      color: var(--deep)
+      color: var(--deep);
+    }
+
+    .scrolled .brand-mark-white {
+      display: none;
+    }
+
+    .scrolled .brand-mark-scrolled {
+      display: block;
+      filter: none;
     }
 
     .nav-links {
@@ -126,8 +159,9 @@
       z-index: 2;
       height: 100%;
       display: flex;
-      align-items: flex-end;
-      padding-bottom: 11vh;
+      align-items: center;
+      padding-top: 70px;
+      padding-bottom: 30px;
       color: #fff
     }
 
@@ -138,19 +172,26 @@
       margin-bottom: 16px
     }
 
+    .hero-logo {
+      display: block;
+      width: clamp(200px, 32vw, 420px);
+      height: auto;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 8px 25px rgba(0, 20, 35, .45));
+    }
+
     .hero h1 {
-      font-size: clamp(42px, 8vw, 90px);
-      line-height: .98;
-      margin: 0 0 22px;
+      margin: 0 0 18px;
       letter-spacing: .04em;
       font-weight: 900
     }
 
     .hero h1 span {
       display: block;
-      font-size: .43em;
+      font-size: clamp(20px, 3.5vw, 32px);
       letter-spacing: .18em;
-      margin-top: 18px
+      margin-top: 2px;
+      text-shadow: 0 2px 12px rgba(0, 30, 45, .4);
     }
 
     .hero-copy {
@@ -407,14 +448,99 @@
     }
 
     .access {
-      background: #fff
+      background: linear-gradient(180deg, #f5fbfd, #fff)
     }
 
-    .access-grid {
+    .access-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      border: 1px solid rgba(242, 107, 58, .2);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--accent);
+      margin-top: 18px;
+      margin-bottom: 30px
+    }
+
+    .access-steps {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 40px;
+      position: relative
+    }
+
+    .access-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      padding: 30px 18px
+    }
+
+    .access-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 14px solid var(--blue);
+      z-index: 2
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 20px rgba(7, 152, 207, .25)
+    }
+
+    .step-label {
+      display: block;
+      font-weight: 900;
+      font-size: 17px;
+      color: var(--deep);
+      margin-bottom: 6px
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: #5b7079;
+      line-height: 1.6
+    }
+
+    .step-time {
+      display: inline-block;
+      background: var(--deep);
+      color: #fff;
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 8px;
+      letter-spacing: .06em
+    }
+
+    .access-detail {
       display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 45px;
-      align-items: center
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 45px
     }
 
     .access-card {
@@ -426,24 +552,385 @@
     .access-card h3 {
       margin: 0 0 15px;
       color: var(--deep);
-      font-size: 25px
+      font-size: 22px
     }
 
     .access-card p {
       margin: 7px 0;
-      color: #4f6872
+      color: #4f6872;
+      font-size: 14px
     }
 
-    .map-note {
-      min-height: 350px;
+    .access-card a {
+      color: var(--blue);
+      font-weight: 700
+    }
+
+    /* ========================================
+       PRICE
+       ======================================== */
+    .price {
+      background: linear-gradient(180deg, #fff, #f8fbfd);
+    }
+
+    .price-base-card {
+      background: #fff;
+      border: 2px solid var(--blue);
       border-radius: 24px;
-      background: linear-gradient(135deg, #d9f4ff, #f7fcff);
+      padding: 30px 35px;
+      margin-top: 35px;
+      box-shadow: 0 12px 35px rgba(7, 152, 207, .08);
+      position: relative;
+    }
+
+    .base-badge {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .base-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .base-main h3 {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--deep);
+      margin: 0 0 6px;
+    }
+
+    .base-main p {
+      font-size: 14px;
+      color: #556e79;
+      margin: 0 0 10px;
+    }
+
+    .base-features {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+      color: #2b6177;
+      font-weight: 600;
+    }
+
+    .base-price-box {
+      text-align: right;
+      min-width: 220px;
+    }
+
+    .base-amount {
+      font-size: clamp(34px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: .02em;
+      line-height: 1;
+    }
+
+    .base-unit {
+      font-size: 12px;
+      color: #6a838d;
+      margin-top: 4px;
+    }
+
+    .price-step-label {
+      text-align: center;
+      margin: 35px 0 18px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .15em;
+      color: #0789bb;
+    }
+
+    .price-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .price-card {
+      background: var(--sky);
+      border-radius: 24px;
+      padding: 35px 26px;
+      border: 1px solid rgba(7, 137, 187, .12);
+      text-align: center;
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(5, 65, 90, .1)
+    }
+
+    .price-card.featured {
+      background: var(--deep);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 16px 45px rgba(6, 59, 87, .25);
+    }
+
+    .price-card.featured::before {
+      content: "POPULAR";
+      position: absolute;
+      top: 16px;
+      right: -28px;
+      transform: rotate(45deg);
+      background: var(--accent);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      padding: 4px 36px;
+      box-shadow: 0 4px 12px rgba(242, 107, 58, .3)
+    }
+
+    .price-icon {
+      font-size: 38px;
+      margin-bottom: 10px
+    }
+
+    .price-card h3 {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      margin: 0 0 4px;
+      color: var(--deep)
+    }
+
+    .price-card.featured h3 {
+      color: #fff
+    }
+
+    .price-sub {
+      font-size: 13px;
+      opacity: .75;
+      margin-bottom: 16px
+    }
+
+    .price-amount {
+      font-size: clamp(28px, 3.2vw, 36px);
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: .02em;
+      margin-bottom: 2px;
+      line-height: 1.1
+    }
+
+    .price-card.featured .price-amount {
+      color: #6fd4f5
+    }
+
+    .price-tax {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: .65;
+      margin-left: 2px
+    }
+
+    .price-unit {
+      font-size: 12px;
+      opacity: .65;
+      margin-bottom: 18px
+    }
+
+    .price-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.9;
+      flex-grow: 1;
+    }
+
+    .price-list li::before {
+      content: "✓ ";
+      color: #0789bb;
+      font-weight: 700
+    }
+
+    /* Collapsible Menu Accordion */
+    .menu-details {
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(5, 65, 90, .04);
+    }
+
+    .menu-summary {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--deep);
+      cursor: pointer;
+      background: var(--sky);
+      list-style: none;
+      user-select: none;
+      transition: background .2s;
+    }
+
+    .menu-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .menu-summary:hover {
+      background: #ddf4ff;
+    }
+
+    .menu-details[open] .menu-summary {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .menu-breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 24px 30px;
+    }
+
+    .menu-col h4 {
+      margin: 0 0 14px;
+      font-size: 16px;
+      color: var(--deep);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--sky);
+      padding-bottom: 8px;
+    }
+
+    .menu-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      font-size: 13px;
+      color: #4a636e;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(6, 59, 87, .1);
+      padding-bottom: 4px;
+    }
+
+    .menu-item b {
+      color: var(--deep);
+    }
+
+    .price-notes {
       text-align: center;
-      padding: 30px;
-      color: #467080
+      margin-top: 24px;
+      font-size: 13px;
+      color: #6d828a;
+      background: var(--sky);
+      padding: 16px 24px;
+      border-radius: 14px;
+      border: 1px solid rgba(7, 137, 187, .1)
+    }
+
+    /* ========================================
+       FAQ
+       ======================================== */
+    .faq {
+      background: var(--sand)
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 45px auto 0
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 18px;
+      margin-bottom: 12px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(5, 65, 90, .04)
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 28px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--deep);
+      user-select: none;
+      gap: 16px
+    }
+
+    .faq-q:hover {
+      background: rgba(7, 137, 187, .03)
+    }
+
+    .faq-q .q-label {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      flex-shrink: 0;
+      margin-right: 8px
+    }
+
+    .faq-toggle {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--sky);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--blue);
+      transition: transform .3s
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg)
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px
+    }
+
+    .faq-a-inner {
+      padding: 0 28px 22px;
+      font-size: 14px;
+      color: #55717c;
+      line-height: 1.85
     }
 
     .final {
@@ -465,14 +952,14 @@
     .footer {
       background: #052d42;
       color: #fff;
-      padding: 55px 0 30px
+      padding: 60px 0 35px
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
-      gap: 25px;
-      align-items: end
+      gap: 30px;
+      align-items: flex-end
     }
 
     .footer-brand {
@@ -481,22 +968,118 @@
       letter-spacing: .08em
     }
 
-    .footer small {
-      opacity: .6
+    .footer-sub {
+      font-size: 13px;
+      color: #6fd4f5;
+      font-weight: 700;
+      margin-top: 2px;
     }
 
-    .float {
+    .footer-info {
+      font-size: 13px;
+      opacity: .8;
+      line-height: 1.8;
+      margin: 14px 0 0;
+    }
+
+    .footer-info a {
+      color: #6fd4f5;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-right p {
+      margin: 4px 0;
+      font-size: 13px;
+    }
+
+    .footer-right a {
+      color: #6fd4f5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer small {
+      display: block;
+      margin-top: 12px;
+      opacity: .6;
+      font-size: 12px;
+    }
+
+    .btn-reserve-sm {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: .2s;
+    }
+    .btn-reserve-sm:hover {
+      background: var(--deep);
+    }
+
+    .btn-reserve-featured {
+      display: block;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 900;
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(242, 107, 58, .35);
+      transition: transform .2s, box-shadow .2s;
+      margin-top: 18px;
+    }
+    .btn-reserve-featured:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(242, 107, 58, .5);
+    }
+
+    /* Float booking bar */
+    .float-bar {
       position: fixed;
       z-index: 60;
-      right: 18px;
-      bottom: 18px;
-      background: #111;
-      color: #fff;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .float-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
       border-radius: 999px;
-      padding: 14px 20px;
+      font-size: 14px;
       font-weight: 900;
-      font-size: 13px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, .18)
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 25, 45, .25);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .float-reserve {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .float-reserve:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(242, 107, 58, .45);
+    }
+
+    .float-insta {
+      background: #fff;
+      color: #e1306c;
+      padding: 14px;
+      font-size: 16px;
     }
 
     @media(max-width:800px) {
@@ -513,14 +1096,32 @@
       }
 
       .hero-content {
-        padding-bottom: 12vh
+        align-items: center;
+        padding-top: 80px;
+        padding-bottom: 40px;
       }
 
       .intro-grid,
       .bbq-grid,
-      .access-grid {
+      .access-detail {
         grid-template-columns: 1fr;
         gap: 30px
+      }
+
+      .access-steps {
+        flex-direction: column;
+        gap: 0
+      }
+
+      .access-step:not(:last-child)::after {
+        top: auto;
+        bottom: -7px;
+        right: 50%;
+        transform: translateX(50%);
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-top: 14px solid var(--blue);
+        border-bottom: none
       }
 
       .intro-photo {
@@ -557,13 +1158,47 @@
         grid-template-columns: 1fr 1fr
       }
 
-      .sunset {
-        height: 65vh
+      .base-body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .base-features {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .base-price-box {
+        text-align: left;
+        min-width: auto;
+        border-top: 1px dashed var(--line);
+        padding-top: 14px;
+        width: 100%;
+      }
+
+      .price-grid-2col {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .menu-breakdown {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .menu-items {
+        grid-template-columns: 1fr;
       }
 
       .footer-inner {
         flex-direction: column;
-        align-items: flex-start
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .footer-right {
+        text-align: left;
       }
     }
 
@@ -597,10 +1232,17 @@
         grid-column: 1
       }
 
-      .float {
+      .float-bar {
         right: 12px;
         left: 12px;
-        text-align: center
+        bottom: 12px;
+      }
+
+      .float-reserve {
+        flex: 1;
+        justify-content: center;
+        padding: 13px 16px;
+        font-size: 13px;
       }
     }
 
@@ -794,25 +1436,30 @@
 <body>
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#">GoGoUmi paradise</a>
+      <a class="brand" href="#">
+        <img src="images/logo_mark_white.png" alt="GoGoUmi paradise ロゴマーク" class="brand-mark brand-mark-white">
+        <img src="images/logo_mark.png" alt="GoGoUmi paradise ロゴマーク" class="brand-mark brand-mark-scrolled">
+        <span>GoGoUmi paradise</span>
+      </a>
       <div class="nav-links">
         <a href="#about">ABOUT</a><a href="#bbq">BBQ</a><a href="#gallery">GALLERY</a><a href="#acai">ACAI</a><a
-          href="#access">ACCESS</a>
+          href="#price">PRICE</a><a href="#access">ACCESS</a><a href="#faq">FAQ</a>
       </div>
     </div>
   </nav>
 
   <header class="hero">
-    <div class="hero-bg"><img src="images/photo1.jpeg" alt="興居島の海"></div>
+    <div class="hero-bg"><img src="images/photo12.jpeg" alt="興居島の青い海と砂浜"></div>
     <div class="container hero-content">
       <div>
         <div class="eyebrow">A PRIVATE BEACH DAY IN GOGOSHIMA</div>
-        <h1>GoGoUmi paradise<span>海の虜</span></h1>
+        <h1><img src="images/logo_white.png" alt="GoGoUmi paradise" class="hero-logo"><span>海の虜</span></h1>
         <p class="hero-copy">松山から少しだけ離れて、海とBBQと島時間。<br>この夏、いつもよりちょっと贅沢な一日を。</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://www.instagram.com/gogoumi_paradise" target="_blank"
-            rel="noopener">空き状況・予約をInstagramで確認</a>
-          <a class="btn btn-outline" href="#bbq">過ごし方を見る</a>
+          <a class="btn btn-primary" href="https://airregi.jp/reserve/" data-reserve-link target="_blank"
+            rel="noopener">空き状況・WEB予約はこちら</a>
+          <a class="btn btn-outline" href="https://www.instagram.com/gogoumi_paradise" target="_blank"
+            rel="noopener">公式Instagram</a>
         </div>
       </div>
     </div>
@@ -820,15 +1467,15 @@
 
   <section class="intro" id="about">
     <div class="container intro-grid">
-      <div class="intro-photo"><img src="images/photo3.jpeg" alt="GoGoUmi paradise 海の家"></div>
+      <div class="intro-photo"><img src="images/photo19.jpeg" alt="GoGoUmi paradise 海の家 外観"></div>
       <div>
         <div class="kicker">ABOUT</div>
         <h2>海を、もっと近くに。<br>島時間を、もっと自由に。</h2>
         <p class="lead">目の前に広がる青い海。白い砂浜。ゆっくり流れる時間。GoGoUmi paradiseは、興居島の海を思いきり楽しむための海の家です。</p>
         <div class="badges"><span class="badge">BEACH</span><span class="badge">BBQ</span><span class="badge">ISLAND
-            TIME</span><span class="badge">SUNSET</span></div>
+            TIME</span><span class="badge">SUNSET</span><span class="badge">PET OK</span></div>
         <p class="quote">「今日は、島に行こう。」<br>そんな気軽さで。</p>
-        <p class="lead">海で遊んで、食べて、飲んで、笑って。大切な人と過ごす一日を、ちょっと特別な思い出に。</p>
+        <p class="lead">海で遊んで、食べて、飲んで、笑って。大切な人や愛犬と過ごす一日を、ちょっと特別な思い出に。</p>
       </div>
     </div>
   </section>
@@ -839,39 +1486,14 @@
       <h2>ここにしかない、<br>海の景色。</h2>
       <p class="lead">青い海と白い砂浜。昼の開放感から、夕暮れの静けさまで。一日を通して表情を変える海が待っています。</p>
       <div class="gallery-grid">
-        <div class="g g1"><img src="images/photo1.jpeg" alt="青い海と砂浜"></div>
-        <div class="g g2"><img src="images/photo5.jpeg" alt="海と島の景色"></div>
-        <div class="g g3"><img src="images/photo6.jpeg" alt="興居島の海"></div>
-        <div class="g g4"><img src="images/photo4.jpeg" alt="夕暮れの海"></div>
+        <div class="g g1"><img src="images/photo14.jpeg" alt="砂浜のビーチチェアと青い海"></div>
+        <div class="g g2"><img src="images/photo15.jpeg" alt="海の家のすだれとテラス席"></div>
+        <div class="g g3"><img src="images/dog.jpeg" alt="海辺で一緒に過ごす愛犬"></div>
+        <div class="g g4"><img src="images/photo20.jpeg" alt="夕暮れ・サンセットの砂浜"></div>
       </div>
     </div>
   </section>
 
-
-  <section class="plan">
-    <div class="container">
-      <div class="kicker">ONE DAY IN GOGOUMI</div>
-      <h2>ゴゴパラで過ごす、<br>おすすめの一日。</h2>
-      <p class="lead section-intro">海だけじゃない。食べて、遊んで、休んで、夕暮れまで。予定を詰めすぎないことが、島時間の楽しみ方。</p>
-      <div class="plan-grid">
-        <div class="plan-card">
-          <div class="num">01 / ARRIVE</div>
-          <h3>海に着いたら</h3>
-          <p>まずは海を眺めながら、ゆっくりスタート。砂浜で遊ぶも、椅子でのんびりするも自由。</p>
-        </div>
-        <div class="plan-card">
-          <div class="num">02 / BBQ</div>
-          <h3>みんなでBBQ</h3>
-          <p>お肉と野菜を囲んで、海辺のランチ。友達同士でも、家族でも、夏の思い出に。</p>
-        </div>
-        <div class="plan-card">
-          <div class="num">03 / SUNSET</div>
-          <h3>夕暮れまで</h3>
-          <p>海の色が変わる時間まで、もう少しだけ。写真を撮ったり、何もしなかったり。</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="bbq" id="bbq">
     <div class="container">
@@ -909,7 +1531,7 @@
   </section>
 
   <section class="sunset">
-    <img src="images/photo4.jpeg" alt="興居島の夕暮れ">
+    <img src="images/photo11.jpeg" alt="興居島の鮮やかな夕暮れ">
     <div class="container sunset-content">
       <div>
         <div class="eyebrow">SUNSET TIME</div>
@@ -918,32 +1540,241 @@
     </div>
   </section>
 
+  <!-- ====== PRICE ====== -->
+  <section class="price" id="price">
+    <div class="container">
+      <div class="kicker">PRICE & SYSTEM</div>
+      <h2>料金システム</h2>
+      <p class="lead">当施設は **1日ゆっくり過ごせる貸卓（ブース）制** です。<br>基本の貸卓料に、お好みのBBQセットやフード＆ドリンクを組み合わせてご利用いただけます。</p>
 
-  <section class="reserve-band">
-    <div class="container reserve-inner">
-      <div>
-        <h3>行きたい日が決まったら、まずはInstagramへ。</h3>
-        <p>営業日・料金・予約方法などの最新情報をご確認いただけます。</p>
+      <!-- Step 1: 基本貸卓料バナー -->
+      <div class="price-base-card">
+        <div class="base-badge">STEP 1 / 基本入場・施設利用</div>
+        <div class="base-body">
+          <div class="base-main">
+            <h3>貸卓（ブース利用料）</h3>
+            <p>1日中使える専用テーブル席（仕切り無・4名様迄）</p>
+            <ul class="base-features">
+              <li>✓ 5名様以上は2卓〜</li>
+              <li>✓ 浮き輪等の空気入れ無料貸出</li>
+              <li>✓ 営業時間 11:00〜16:30 (L.O)</li>
+            </ul>
+          </div>
+          <div class="base-price-box">
+            <div class="base-amount">¥1,500<span class="price-tax">(税抜)</span></div>
+            <div class="base-unit">/ 1卓（4名様迄・1日利用）</div>
+            <a class="btn-reserve-sm" href="https://airregi.jp/reserve/" data-reserve-link target="_blank" rel="noopener" style="margin-top:10px">貸卓をWEB予約 ↗</a>
+          </div>
+        </div>
       </div>
-      <a class="btn" style="background:var(--deep);color:#fff" href="https://www.instagram.com/gogoumi_paradise"
-        target="_blank" rel="noopener">Instagramで確認する ↗</a>
+
+      <!-- Step 2: 選べる楽しみ方（BBQ or フード） -->
+      <div class="price-step-label">STEP 2 / 楽しみ方に合わせてプラス！</div>
+
+      <div class="price-grid-2col">
+        <!-- BBQプラン -->
+        <div class="price-card featured">
+          <div class="price-icon">BBQ</div>
+          <h3>手ぶらBBQセット</h3>
+          <p class="price-sub">事前予約制・海辺で本格BBQ</p>
+          <div class="price-amount">¥3,000<span class="price-tax">(税抜)</span></div>
+          <p class="price-unit">/ 1〜2人前（肉3種＋野菜盛り）</p>
+          <ul class="price-list">
+            <li>お肉3種類 ＋ 季節の野菜盛り合わせ</li>
+            <li>BBQコンロ・網（1台）: ¥1,100</li>
+            <li>炭（3kg）: ¥1,500</li>
+            <li>※BBQセットは事前予約が必要です</li>
+          </ul>
+          <a class="btn-reserve-featured" href="https://airregi.jp/reserve/" data-reserve-link target="_blank" rel="noopener">BBQプランをWEB予約 ↗</a>
+        </div>
+
+        <!-- カフェ・アラカルト -->
+        <div class="price-card">
+          <div class="price-icon">CAFE</div>
+          <h3>カフェ＆アラカルト</h3>
+          <p class="price-sub">当日カウンター注文・手軽なランチ＆カフェ</p>
+          <div class="price-amount" style="font-size:24px;margin:8px 0 6px">カウンター注文</div>
+          <p class="price-unit">ラーメン・カレー・アサイーボウル・ドリンク等</p>
+          <ul class="price-list">
+            <li>アサイーボウル・かき氷（¥400〜）</li>
+            <li>ラーメン・うどん・カレー各種（¥500〜¥900）</li>
+            <li>生ビール・サワー・ハイボール（¥500〜¥700）</li>
+            <li>ソフトドリンク各種（¥300）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- フード＆ドリンクの折りたたみメニュー表 -->
+      <details class="menu-details">
+        <summary class="menu-summary">
+          <span>詳しいフード＆ドリンクメニューを見る</span>
+          <span style="font-size:11px;opacity:.7">▼</span>
+        </summary>
+        <div class="menu-breakdown">
+          <div class="menu-col">
+            <h4>FOOD MENU</h4>
+            <div class="menu-items">
+              <div class="menu-item"><span>ラーメン（醤油 / 豚骨）</span><b>¥700</b></div>
+              <div class="menu-item"><span>カレーライス</span><b>¥700</b></div>
+              <div class="menu-item"><span>カツカレー / エビフライカレー</span><b>¥900</b></div>
+              <div class="menu-item"><span>うどん（温・冷）</span><b>¥500</b></div>
+              <div class="menu-item"><span>からあげ（3個） / ポテト</span><b>¥500</b></div>
+              <div class="menu-item"><span>フランクフルト / 枝豆</span><b>¥400 / ¥300</b></div>
+              <div class="menu-item"><span>おにぎり（2個）</span><b>¥500</b></div>
+              <div class="menu-item"><span>かき氷（各種）</span><b>¥400</b></div>
+            </div>
+          </div>
+          <div class="menu-col">
+            <h4>DRINK MENU</h4>
+            <div class="menu-items">
+              <div class="menu-item"><span>生ビール</span><b>¥600</b></div>
+              <div class="menu-item"><span>スタイルフリー</span><b>¥500</b></div>
+              <div class="menu-item"><span>ハイボール</span><b>¥700</b></div>
+              <div class="menu-item"><span>レモン / グレープフルーツサワー</span><b>¥600</b></div>
+              <div class="menu-item"><span>焼酎（麦）</span><b>¥600</b></div>
+              <div class="menu-item"><span>コーラ / オレンジ / 烏龍茶</span><b>¥300</b></div>
+              <div class="menu-item"><span>氷追加</span><b>¥200</b></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div class="price-notes">
+        ※ 料金はすべて税抜価格です。商品の受け渡しはカウンターにてお願いいたします。<br>
+        ※ BBQセットやご予約に関するご相談は <a href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Instagram DM</a> またはお電話（現地担当：080-4999-0246）にて承ります。
+      </div>
     </div>
   </section>
 
+  <!-- ====== ACCESS ====== -->
   <section class="access" id="access">
-    <div class="container access-grid">
-      <div>
-        <div class="kicker">ACCESS</div>
-        <h2>松山から、<br>ちょっと島へ。</h2>
-        <p class="lead">GoGoUmi paradiseは愛媛県松山市の興居島にあります。松山から船で海を渡れば、いつもの日常から少しだけ離れた島時間が始まります。</p>
+    <div class="container">
+      <div class="kicker">ACCESS</div>
+      <h2>松山から、<br>ちょっと島へ。</h2>
+      <p class="lead">GoGoUmi paradiseは愛媛県松山市の興居島にあります。<br>思ったよりずっと近い、船旅のスタートです。</p>
+      <div class="access-highlight">高浜港からフェリーでたった約10〜15分！</div>
+
+      <!-- step flow -->
+      <div class="access-steps">
+        <div class="access-step">
+          <div class="step-num">1</div>
+          <span class="step-label">松山市内</span>
+          <span class="step-desc">車または伊予鉄で<br>高浜駅・高浜港へ</span>
+        </div>
+        <div class="access-step">
+          <div class="step-num">2</div>
+          <span class="step-label">高浜港</span>
+          <span class="step-desc">フェリー乗り場へ<br>（車ごと乗船もOK）</span>
+        </div>
+        <div class="access-step">
+          <div class="step-num">3</div>
+          <span class="step-label">フェリー乗船</span>
+          <span class="step-desc">由良港 or 泊港へ</span>
+          <span class="step-time">約10〜15分</span>
+        </div>
+        <div class="access-step">
+          <div class="step-num">4</div>
+          <span class="step-label">興居島到着！</span>
+          <span class="step-desc">GoGoUmi paradise<br>で最高の一日を</span>
+        </div>
       </div>
-      <div class="access-card">
-        <h3>GoGoUmi paradise</h3>
-        <p><b>AREA</b><br>愛媛県松山市・興居島</p>
-        <p><b>STYLE</b><br>海の家 / BBQ / BEACH TIME</p>
-        <p><b>OFFICIAL</b><br><a href="https://www.instagram.com/gogoumi_paradise" target="_blank"
-            rel="noopener">@gogoumi_paradise</a></p>
-        <p style="margin-top:22px;font-size:13px;color:#6a828c">※営業日・料金・予約方法・船の時刻などは、最新のInstagram投稿をご確認ください。</p>
+
+      <!-- detail cards -->
+      <div class="access-detail">
+        <div class="access-card">
+          <h3>GoGoUmi paradise<br><span style="font-size:15px;color:#0789bb">興居島海の家 海の虜</span></h3>
+          <p><b>住所</b><br>〒791-8093 愛媛県松山市泊町 鷲ヶ巣海水浴場</p>
+          <p><b>営業時間</b><br>11:00〜16:30 (L.O) <span style="font-size:12px;opacity:.8">※予約制</span></p>
+          <p><b>お問い合わせ・ご予約</b><br>現地担当（池田）：<a href="tel:08049990246" style="color:var(--blue);font-weight:700">080-4999-0246</a></p>
+          <p><b>フェリー時刻表</b><br><a href="https://gogoshima-ferry.com/timetable_faretable/" target="_blank"
+              rel="noopener">ごごしまフェリー時刻表 ↗</a></p>
+        </div>
+        <div class="access-card">
+          <h3>ご来場のポイント</h3>
+          <p>・海の家の近くに駐車場あり（満車時も路駐可）</p>
+          <p>・高浜港周辺にも駐車場あり</p>
+          <p>・伊予鉄「高浜駅」から高浜港へは徒歩すぐ</p>
+          <p>・フェリーの時刻は<a href="https://gogoshima-ferry.com/timetable_faretable/" target="_blank"
+              rel="noopener">こちら</a>で確認</p>
+          <p>・最新情報は<a href="https://www.instagram.com/gogoumi_paradise" target="_blank"
+              rel="noopener">Instagram</a>にて</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="kicker">FAQ</div>
+      <h2>よくある質問</h2>
+      <p class="lead">初めての方でも安心。気になるポイントをまとめました。</p>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div><span class="q-label">Q.</span>予約は必要ですか？</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、事前のご予約をお願いしております。空き状況の確認・ご予約はWEB予約システム、または<a
+                href="https://www.instagram.com/gogoumi_paradise" target="_blank"
+                rel="noopener" style="color:var(--blue);font-weight:700">Instagram DM</a>・お電話（<a href="tel:08049990246" style="color:var(--blue);font-weight:700">080-4999-0246</a>）からお問い合わせください。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div><span class="q-label">Q.</span>雨の日は営業していますか？</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">天候状況により営業を見合わせる場合がございます。当日の営業状況は<a
+                href="https://www.instagram.com/gogoumi_paradise" target="_blank"
+                rel="noopener" style="color:var(--blue);font-weight:700">Instagram</a>のストーリーズでご確認ください。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div><span class="q-label">Q.</span>手ぶらで行っても大丈夫？</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい！BBQプランには機材・食材がセットになっています。お気軽に手ぶらでお越しください。水着やタオルなどはお持ちいただくことをおすすめします。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div><span class="q-label">Q.</span>子供連れでも楽しめますか？</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">もちろんです！ファミリーでのご利用も大歓迎です。砂浜での海遊びやBBQを、お子様と一緒にお楽しみいただけます。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div><span class="q-label">Q.</span>ペット（愛犬）は同伴できますか？</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、ペット同伴でのご来場も大歓迎です！海辺のお散歩やBBQを愛犬と一緒にお楽しみいただけます。他のお客様へのご配慮のため、リードの着用をお願いしております。</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div><span class="q-label">Q.</span>駐車場はありますか？</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">はい、海の家の近くに駐車場がございます。万が一満車の場合でも道路脇への駐車が可能ですので、お車でお越しの際もご安心ください。</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -953,8 +1784,10 @@
       <div class="kicker">SEE YOU AT THE BEACH</div>
       <h2>この夏は、興居島へ。</h2>
       <p>海で遊ぶ。BBQをする。何もしない。どんな過ごし方も、きっといい。</p>
-      <a class="btn" style="background:var(--deep);color:#fff" href="https://www.instagram.com/gogoumi_paradise"
-        target="_blank" rel="noopener">Instagramで最新情報を見る</a>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" style="background:var(--accent);color:#fff" href="https://airregi.jp/reserve/" data-reserve-link target="_blank" rel="noopener">空き状況・WEB予約はこちら</a>
+        <a class="btn" style="background:var(--deep);color:#fff" href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener">公式Instagramを見る</a>
+      </div>
     </div>
   </section>
 
@@ -962,17 +1795,56 @@
     <div class="container footer-inner">
       <div>
         <div class="footer-brand">GoGoUmi paradise</div>
-        <small>海の虜｜GOGOSHIMA, EHIME</small>
+        <div class="footer-sub">興居島海の家 海の虜</div>
+        <p class="footer-info">
+          〒791-8093 愛媛県松山市泊町 鷲ヶ巣海水浴場<br>
+          営業時間：11:00〜16:30 (L.O) ※予約制<br>
+          現地担当（池田）：<a href="tel:08049990246">080-4999-0246</a>
+        </p>
       </div>
-      <small>© GoGoUmi paradise</small>
+      <div class="footer-right">
+        <p><a href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener">Instagram @gogoumi_paradise ↗</a></p>
+        <small>© GoGoUmi paradise / 興居島海の家 海の虜</small>
+      </div>
     </div>
   </footer>
 
-  <a class="float" href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener">Instagram ↗</a>
+  <!-- 固定フロート予約バー -->
+  <div class="float-bar">
+    <a class="float-btn float-reserve" href="https://airregi.jp/reserve/" data-reserve-link target="_blank" rel="noopener">
+      <b>空き状況・WEB予約</b>
+    </a>
+    <a class="float-btn float-insta" href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener" title="Instagram">
+      <span style="font-size:13px;font-weight:800">Instagram</span>
+    </a>
+  </div>
 
   <script>
+    // ==========================================
+    // 予約システム（Airリザーブ）連携設定
+    // ※クライアント様のアカウント開設後、以下のURLを本番URLに書き換えるだけでサイト全体に反映されます
+    // ==========================================
+    const AIR_RESERVE_URL = "https://airregi.jp/reserve/"; // 例: "https://airrsv.net/xxxx/calendar"
+
+    // 全ての予約ボタンにURLを一括適用
+    document.querySelectorAll('[data-reserve-link]').forEach(el => {
+      el.href = AIR_RESERVE_URL;
+    });
+
     const nav = document.getElementById('nav');
     addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        // toggle clicked
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
   </script>
 </body>
 
