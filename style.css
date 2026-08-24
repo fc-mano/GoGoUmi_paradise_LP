@@ -1626,10 +1626,18 @@
         padding: 20px;
       }
 
+      .price-charter-card {
+        padding: 28px 20px;
+      }
+
       .charter-body {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 20px;
+      }
+
+      .charter-action {
+        width: 100%;
       }
 
       .charter-features {
@@ -1638,8 +1646,12 @@
       }
 
       .btn-charter {
+        display: block;
         width: 100%;
         text-align: center;
+        white-space: normal;
+        padding: 14px 16px;
+        line-height: 1.45;
       }
 
       .event-grid {
@@ -1674,6 +1686,15 @@
     }
 
     @media(max-width:480px) {
+      .price-charter-card {
+        padding: 24px 16px;
+      }
+
+      .btn-charter {
+        font-size: 13px;
+        padding: 12px 14px;
+      }
+
       .event-grid {
         grid-template-columns: 1fr;
       }
