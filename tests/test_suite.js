@@ -152,3 +152,15 @@ test("style.css デザイントークンおよびレイアウト定義の検証"
   assert.ok(css.includes(".access-map"), ".access-map のスタイルが定義されていること");
   assert.ok(css.includes(".btn-map-link"), ".btn-map-link のスタイルが定義されていること");
 });
+
+// ==========================================
+// 5. games/ ディレクトリおよび運用設定の整合性検証
+// ==========================================
+test("games/ ディレクトリおよび設定ファイルの整合性検証", () => {
+  assert.ok(fs.existsSync("games/index.html"), "games/index.html が存在すること");
+  assert.ok(fs.existsSync("games/config.js"), "games/config.js が存在すること");
+  assert.ok(fs.existsSync("games/common/coupon-manager.js"), "coupon-manager.js が存在すること");
+  assert.ok(fs.existsSync("games/apps/watermelon-game/index.html"), "スイカ割りゲームが存在すること");
+  assert.ok(fs.existsSync("games/apps/bbq-game/index.html"), "BBQゲームが存在すること");
+  assert.ok(fs.existsSync("games/apps/acai-game/index.html"), "アサイーゲームが存在すること");
+});

@@ -20,6 +20,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run Syntax & Schema Integration Tests
+      - name: Run LP Syntax & Schema Integration Tests
         run: |
-          node --test tests/test_suite.js\n
+          node --test tests/test_suite.js
+
+      - name: Run WebGames Automated Tests
+        run: |
+          node games/config.test.js
+          node games/common/coupon-manager.test.js
+          node games/apps/watermelon-game/script.test.js
+          node games/apps/bbq-game/script.test.js
+          node games/apps/acai-game/script.test.js\n
