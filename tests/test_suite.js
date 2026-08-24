@@ -164,3 +164,83 @@ test("games/ ディレクトリおよび設定ファイルの整合性検証", (
   assert.ok(fs.existsSync("games/apps/bbq-game/index.html"), "BBQゲームが存在すること");
   assert.ok(fs.existsSync("games/apps/acai-game/index.html"), "アサイーゲームが存在すること");
 });
+
+// ==========================================
+// 6. SEO・メタタグ・構造化データ・クローラー設定の検証
+// ==========================================
+test("SEOメタタグ・OGP・Twitterカードの検証", () => {
+  const html = fs.readFileSync("index.html", "utf-8");
+
+  // Title & Description & Canonical & Robots
+  assert.ok(html.includes("<title>GoGoUmi paradise｜海の虜 — 愛媛県松山市・興居島の海の家＆ビーチBBQ</title>"), "SEO最適化されたtitleが存在すること");
+  assert.ok(html.includes('<meta name="description"'), "meta description が存在すること");
+  assert.ok(html.includes('<meta name="robots" content="index, follow">'), "robots meta tag が存在すること");
+  assert.ok(html.includes('<link rel="canonical" href="https://gogoumi-paradise.com/">'), "canonical リンクが存在すること");
+
+  // OGP Tags
+  assert.ok(html.includes('<meta property="og:type" content="website">'), "og:type が存在すること");
+  assert.ok(html.includes('<meta property="og:locale" content="ja_JP">'), "og:locale が存在すること");
+  assert.ok(html.includes('<meta property="og:title"'), "og:title が存在すること");
+  assert.ok(html.includes('<meta property="og:description"'), "og:description が存在すること");
+  assert.ok(html.includes('<meta property="og:url" content="https://gogoumi-paradise.com/">'), "og:url が存在すること");
+  assert.ok(html.includes('<meta property="og:image"'), "og:image が存在すること");
+
+  // Twitter Card
+  assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'), "twitter:card が存在すること");
+  assert.ok(html.includes('<meta name="twitter:title"'), "twitter:title が存在すること");
+  assert.ok(html.includes('<meta name="twitter:description"'), "twitter:description が存在すること");
+  assert.ok(html.includes('<meta name="twitter:image"'), "twitter:image が存在すること");
+});
+
+test("構造化データ (JSON-LD) の構文およびスキーマ検証", () => {
+  const html = fs.readFileSync("index.html", "utf-8");
+  const jsonLdRegex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+  const jsonLdBlocks = [];
+  let match;
+  while ((match = jsonLdRegex.exec(html)) !== null) {
+    const parsed = JSON.parse(match[1].trim());
+    jsonLdBlocks.push(parsed);
+  }
+
+  assert.equal(jsonLdBlocks.length, 2, "JSON-LDスクリプトが2ブロック存在すること（LocalBusiness + FAQPage）");
+
+  // LocalBusiness スキーマ検証
+  const business = jsonLdBlocks.find(b => Array.isArray(b["@type"]) ? b["@type"].includes("LocalBusiness") : b["@type"] === "LocalBusiness");
+  assert.ok(business, "LocalBusiness スキーマが存在すること");
+  assert.equal(business["@context"], "https://schema.org");
+  assert.ok(business.name.includes("GoGoUmi paradise"), "店舗名が正しいこと");
+  assert.equal(business.telephone, "080-4999-0246");
+  assert.ok(business.address && business.address.addressRegion === "愛媛県", "住所情報が正しく設定されていること");
+  assert.ok(business.geo && business.geo.latitude, "緯度経度が設定されていること");
+  assert.ok(Array.isArray(business.openingHoursSpecification), "営業時間が設定されていること");
+
+  // FAQPage スキーマ検証
+  const faq = jsonLdBlocks.find(b => b["@type"] === "FAQPage");
+  assert.ok(faq, "FAQPage スキーマが存在すること");
+  assert.equal(faq["@context"], "https://schema.org");
+  assert.ok(Array.isArray(faq.mainEntity), "mainEntity が配列であること");
+  assert.equal(faq.mainEntity.length, 8, "FAQの質問が8問すべて構造化データに含まれること");
+  faq.mainEntity.forEach(q => {
+    assert.equal(q["@type"], "Question");
+    assert.ok(q.name, "Questionにnameがあること");
+    assert.equal(q.acceptedAnswer["@type"], "Answer");
+    assert.ok(q.acceptedAnswer.text, "Answerにtextがあること");
+  });
+});
+
+test("クローラー制御設定ファイル (robots.txt / sitemap.xml) の検証", () => {
+  // robots.txt
+  assert.ok(fs.existsSync("robots.txt"), "robots.txt が存在すること");
+  const robots = fs.readFileSync("robots.txt", "utf-8");
+  assert.ok(robots.includes("User-agent: *"), "robots.txt に User-agent: * が含まれること");
+  assert.ok(robots.includes("Allow: /"), "robots.txt に Allow: / が含まれること");
+  assert.ok(robots.includes("Sitemap:"), "robots.txt に Sitemap ディレクティブが含まれること");
+
+  // sitemap.xml
+  assert.ok(fs.existsSync("sitemap.xml"), "sitemap.xml が存在すること");
+  const sitemap = fs.readFileSync("sitemap.xml", "utf-8");
+  assert.ok(sitemap.includes("<urlset"), "sitemap.xml に <urlset> が含まれること");
+  assert.ok(sitemap.includes("<loc>https://gogoumi-paradise.com/</loc>"), "トップページのlocが含まれること");
+  assert.ok(sitemap.includes("<loc>https://gogoumi-paradise.com/games/</loc>"), "ゲームポータルのlocが含まれること");
+});
+
