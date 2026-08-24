@@ -1,0 +1,8 @@
+# robots.txt for GoGoUmi paradise
+# https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+User-agent: *
+Allow: /
+
+# サイトマップの場所（公開先ドメイン確定後にURLを調整可能）
+Sitemap: https://gogoumi-paradise.com/sitemap.xml
