@@ -13,9 +13,9 @@ try {
     const resCurrent = resolveActiveGame(GAME_CONFIG, '');
     const expectedKey = GAME_CONFIG.activeGame || GAME_CONFIG.defaultGame;
     assert.strictEqual(resCurrent.key, expectedKey);
-    assert.strictEqual(resCurrent.redirectUrl, `apps/${expectedKey}-game/index.html`);
+    assert.strictEqual(resCurrent.redirectUrl, GAME_CONFIG.games[expectedKey].path);
 
-    // 2. activeGame による手動切り替え（'bbq', 'acai'）のテスト
+    // 2. activeGame による手動切り替え（'bbq', 'acai', 'acai-tower'）のテスト
     const configBbq = { ...GAME_CONFIG, activeGame: 'bbq' };
     const resBbq = resolveActiveGame(configBbq, '');
     assert.strictEqual(resBbq.key, 'bbq');
@@ -25,6 +25,11 @@ try {
     const resAcai = resolveActiveGame(configAcai, '');
     assert.strictEqual(resAcai.key, 'acai');
     assert.strictEqual(resAcai.redirectUrl, 'apps/acai-game/index.html');
+
+    const configAcaiTower = { ...GAME_CONFIG, activeGame: 'acai-tower' };
+    const resAcaiTower = resolveActiveGame(configAcaiTower, '');
+    assert.strictEqual(resAcaiTower.key, 'acai-tower');
+    assert.strictEqual(resAcaiTower.redirectUrl, 'apps/acai-tower/index.html');
 
     // 3. activeGame: 'portal' の場合は一覧表示
     const configPortal = { ...GAME_CONFIG, activeGame: 'portal' };

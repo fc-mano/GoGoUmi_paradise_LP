@@ -16,6 +16,18 @@ const CouponManager = {
             image: 'images/acai_ice.png',
             backUrl: '../apps/acai-game/index.html'
         },
+        'acai-tower': {
+            id: 'acai-tower',
+            name: '30秒アサイータワー・スタック',
+            title: '30秒アサイータワー・スタック チャレンジ成功',
+            benefit: 'バニラアイストッピング追加 または 100円引き',
+            description: '店頭注文時にこちらの画面をご提示いただくと、バニラアイストッピングを追加、または合計金額から100円引きいたします！',
+            codePrefix: 'TOWER',
+            icon: '🥣',
+            theme: 'acai',
+            image: 'images/acai_ice.png',
+            backUrl: '../apps/acai-tower/index.html'
+        },
         'watermelon': {
             id: 'watermelon',
             name: 'スイカ割りタイミングゲーム',
