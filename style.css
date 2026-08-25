@@ -74,6 +74,7 @@
       align-items: center;
       gap: 9px;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .brand-mark {
@@ -1041,6 +1042,10 @@
     }
 
     @media(max-width:800px) {
+      .nav-inner {
+        justify-content: center;
+      }
+
       .nav-links {
         display: none
       }
@@ -1152,6 +1157,16 @@
     }
 
     @media(max-width:480px) {
+      .brand {
+        font-size: 14px;
+        gap: 7px;
+      }
+
+      .brand-mark {
+        width: 24px;
+        height: 24px;
+      }
+
       .hero h1 {
         font-size: 50px
       }
