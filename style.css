@@ -1049,7 +1049,7 @@
 
     @media(max-width:800px) {
       .nav-inner {
-        justify-content: center;
+        justify-content: flex-start;
       }
 
       .nav-links {
