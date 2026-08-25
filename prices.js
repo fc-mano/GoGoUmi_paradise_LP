@@ -99,17 +99,17 @@ const PRICE_CONFIG = {
   plans: [
     {
       featured: true, // おすすめプラン（オレンジ色の枠線・バッジ）にする場合は true
-      icon: "BBQ",
-      title: "手ぶらBBQセット",
+      icon: "BEACH BBQ",
+      title: "手ぶらでゴゴパラセット",
       sub: "事前予約制・海辺で本格BBQ",
       price: "¥3,300",
       tax: "(税込)",
-      unit: "/ 1〜2人前（肉3種＋野菜盛り）",
+      unit: "/ 1〜2人前（お肉3種＋野菜盛り）",
       list: [
-        "お肉3種類 ＋ 季節の野菜盛り合わせ",
-        "BBQコンロ・網（1台）: ¥1,100",
-        "炭（3kg）: ¥1,500",
-        "※BBQセットは事前予約が必要です"
+        "お肉3種＋野菜盛り：¥3,300 / 1〜2人前",
+        "コンロ＋網（1台）：¥1,100",
+        "炭（2.5kg）：¥1,100",
+        "※事前予約制"
       ],
       hasReserveButton: true,
       reserveButtonText: "BBQプランをWEB予約 ↗"
