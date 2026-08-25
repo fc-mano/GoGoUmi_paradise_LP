@@ -70,7 +70,7 @@ const PRICE_CONFIG = {
     title: "貸卓（ブース利用料）",
     desc: "1日中使える専用テーブル席（仕切りなし・4名様迄）",
     price: "¥1,500",
-    tax: "(税抜)",
+    tax: "(税込)",
     unit: "/ 1卓（4名様迄・1日利用）",
     features: [
       "5名様以上は2卓〜",
@@ -102,7 +102,7 @@ const PRICE_CONFIG = {
       title: "手ぶらBBQセット",
       sub: "事前予約制・海辺で本格BBQ",
       price: "¥3,000",
-      tax: "(税抜)",
+      tax: "(税込)",
       unit: "/ 1〜2人前（肉3種＋野菜盛り）",
       list: [
         "お肉3種類 ＋ 季節の野菜盛り合わせ",
@@ -224,7 +224,7 @@ const PRICE_CONFIG = {
   // 9. 料金セクションの注記
   // ----------------------------------------------------------------------------
   notesHtml: `
-    ※ 料金はすべて税抜価格です。商品の受け渡しはカウンターにてお願いいたします。<br>
+    ※ 料金はすべて税込価格です。商品の受け渡しはカウンターにてお願いいたします。<br>
     ※ BBQセットやご予約に関するご相談は <a href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Instagram DM</a> またはお電話（現地担当：080-4999-0246）にて承ります。
   `
 };
