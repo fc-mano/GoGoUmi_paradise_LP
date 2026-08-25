@@ -104,8 +104,9 @@ function renderPriceSection() {
     const charterFeaturesHtml = (cfg.charter.features || [])
       .map(f => `<li>✓ ${escapeHtml(f)}</li>`)
       .join('');
-    const minGuestsNum = escapeHtml(String(cfg.charter.minGuests));
-    const charterLeadText = `${minGuestsNum}${escapeHtml(cfg.charter.lead)}`;
+    const charterLeadText = cfg.charter.lead
+      ? escapeHtml(cfg.charter.lead)
+      : `${escapeHtml(String(cfg.charter.minGuests || ''))}名様以上で貸切承ります`;
     const contactUrl = cfg.charter.contactUrl || "https://www.instagram.com/gogoumi_paradise";
 
     charterHtml = `
