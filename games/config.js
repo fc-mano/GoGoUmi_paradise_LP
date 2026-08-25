@@ -9,10 +9,10 @@ const GAME_CONFIG = {
     // ==========================================
     // 1. 今週のゲーム手動指定
     // ==========================================
-    // 候補: 'watermelon' | 'bbq' | 'acai'
+    // 候補: 'watermelon' | 'bbq' | 'acai' | 'acai-tower'
     // ※ 'portal' を設定すると自動リダイレクトせず一覧ポータルを表示します
     // ※ null を設定すると下の schedule（週間スケジュール）に従って自動判定します
-    activeGame: 'acai',
+    activeGame: 'acai-tower',
 
     // ==========================================
     // 2. 週間スケジュール設定（activeGame が null の場合に使用）
@@ -21,7 +21,8 @@ const GAME_CONFIG = {
     schedule: [
         // { startDate: '2026-08-01', game: 'watermelon' },
         // { startDate: '2026-08-10', game: 'bbq' },
-        // { startDate: '2026-08-17', game: 'acai' }
+        // { startDate: '2026-08-17', game: 'acai' },
+        // { startDate: '2026-08-24', game: 'acai-tower' }
     ],
 
     // ==========================================
@@ -47,7 +48,14 @@ const GAME_CONFIG = {
             name: '映えアサイー職人',
             icon: '🫐',
             path: 'apps/acai-game/index.html',
-            description: '一瞬だけ表示されるお手本を記憶して、完璧なアサイーボウルを再現！'
+            description: 'お手本を覚えて素早くトッピング！映えるアサイーボウルを作ろう！'
+        },
+        'acai-tower': {
+            id: 'acai-tower',
+            name: '30秒アサイータワー・スタック',
+            icon: '🥣',
+            path: 'apps/acai-tower/index.html',
+            description: 'カップをスライドしてフルーツをキャッチ！30秒で豪華な映えタワーを作ろう！'
         }
     },
 

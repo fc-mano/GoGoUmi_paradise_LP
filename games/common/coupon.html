@@ -67,9 +67,17 @@
             // クリアタイム/達成記録の反映
             const clearTime = params.get('time');
             const clearRecord = params.get('record');
+            const scoreParam = params.get('score');
+            const rankParam = params.get('rank');
             const recordEl = document.getElementById('record-display');
 
-            if (clearTime) {
+            if (scoreParam && rankParam) {
+                recordEl.textContent = `🏆 スコア: ${Number(scoreParam).toLocaleString()}点 (RANK ${rankParam})`;
+                recordEl.classList.remove('hidden');
+            } else if (scoreParam) {
+                recordEl.textContent = `🏆 スコア: ${Number(scoreParam).toLocaleString()}点`;
+                recordEl.classList.remove('hidden');
+            } else if (clearTime) {
                 recordEl.textContent = `⏱️ クリアタイム: ${clearTime}秒`;
                 recordEl.classList.remove('hidden');
             } else if (clearRecord) {

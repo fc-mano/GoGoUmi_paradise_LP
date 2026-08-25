@@ -66,6 +66,12 @@ try {
     assert.strictEqual(acaiConfig.theme, 'acai');
     assert.strictEqual(acaiConfig.image, 'images/acai_ice.png');
 
+    const acaiTowerConfig = CouponManager.getGameConfig('acai-tower');
+    assert.strictEqual(acaiTowerConfig.name, '30秒アサイータワー・スタック');
+    assert.strictEqual(acaiTowerConfig.codePrefix, 'TOWER');
+    assert.strictEqual(acaiTowerConfig.theme, 'acai');
+    assert.strictEqual(acaiTowerConfig.image, 'images/acai_ice.png');
+
     const suikaConfig = CouponManager.getGameConfig('watermelon');
     assert.strictEqual(suikaConfig.name, 'スイカ割りタイミングゲーム');
     assert.strictEqual(suikaConfig.codePrefix, 'SUIKA');
