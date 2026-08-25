@@ -52,7 +52,7 @@ const PRICE_CONFIG = {
   // ----------------------------------------------------------------------------
   // 1. 予約システムのURL（Airリザーブ等のリンク先）
   // ----------------------------------------------------------------------------
-  reserveUrl: "https://airregi.jp/reserve/",
+  reserveUrl: "https://www.instagram.com/gogoumi_paradise",
 
   // ----------------------------------------------------------------------------
   // 2. 料金セクションの見出し・説明文
@@ -79,7 +79,7 @@ const PRICE_CONFIG = {
       "店頭限定！海の家ミニゲーム挑戦で特典あり",
       "営業時間 11:00〜(フード/L.O.16:00)"
     ],
-    reserveButtonText: "貸卓をWEB予約 ↗"
+    reserveButtonText: "貸卓のご予約（Instagram DM） ↗"
   },
 
   // ----------------------------------------------------------------------------
@@ -112,7 +112,7 @@ const PRICE_CONFIG = {
         "※事前予約制"
       ],
       hasReserveButton: true,
-      reserveButtonText: "BBQプランをWEB予約 ↗"
+      reserveButtonText: "BBQプランのご予約（Instagram DM） ↗"
     },
     {
       featured: false,

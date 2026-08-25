@@ -51,7 +51,7 @@ function renderPriceSection() {
   const container = document.querySelector('#price .container');
   if (!container) return;
 
-  const reserveUrl = cfg.reserveUrl || "https://airregi.jp/reserve/";
+  const reserveUrl = cfg.reserveUrl || "https://www.instagram.com/gogoumi_paradise";
 
   // STEP 1 特徴リスト
   const baseFeaturesHtml = (cfg.basePrice.features || [])
@@ -263,7 +263,7 @@ function renderEventSection() {
 function setupReserveLinks() {
   const reserveUrl = (typeof PRICE_CONFIG !== 'undefined' && PRICE_CONFIG.reserveUrl)
     ? PRICE_CONFIG.reserveUrl
-    : "https://airregi.jp/reserve/";
+    : "https://www.instagram.com/gogoumi_paradise";
 
   document.querySelectorAll('[data-reserve-link]').forEach(el => {
     el.href = reserveUrl;
