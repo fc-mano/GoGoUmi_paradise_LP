@@ -102,7 +102,7 @@ const PRICE_CONFIG = {
       icon: "BBQ",
       title: "手ぶらBBQセット",
       sub: "事前予約制・海辺で本格BBQ",
-      price: "¥3,000",
+      price: "¥3,300",
       tax: "(税込)",
       unit: "/ 1〜2人前（肉3種＋野菜盛り）",
       list: [
