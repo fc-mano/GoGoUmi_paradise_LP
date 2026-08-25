@@ -203,25 +203,28 @@ const PRICE_CONFIG = {
     toggleText: "詳しいフード＆ドリンクメニューを見る",
     foodTitle: "FOOD MENU",
     foodItems: [
-      { name: "ラーメン（醤油 / 豚骨）", price: "¥700" },
-      { name: "カレーライス", price: "¥700" },
-      { name: "カツカレー / エビフライカレー", price: "¥900" },
-      { name: "うどん（温・冷）", price: "¥500" },
-      { name: "からあげ（3個） / ポテト", price: "¥500" },
-      { name: "フランクフルト", price: "¥400" },
       { name: "枝豆", price: "¥300" },
-      { name: "おにぎり（2個）", price: "¥500" },
-      { name: "かき氷（各種）", price: "¥400" }
+      { name: "フランクフルト", price: "¥400" },
+      { name: "からあげ", price: "¥500" },
+      { name: "ポテトフライ", price: "¥500" },
+      { name: "ラーメン", price: "¥700" },
+      { name: "おにぎりセット", price: "¥500" },
+      { name: "カレーライス", price: "¥700" },
+      { name: "バニラアイス", price: "¥300" },
+      { name: "かき氷（各種）", price: "¥400" },
+      { name: "ゴゴパラアサイーボウル", price: "¥1200" }
     ],
     drinkTitle: "DRINK MENU",
     drinkItems: [
       { name: "生ビール", price: "¥600" },
       { name: "スタイルフリー", price: "¥500" },
       { name: "ハイボール", price: "¥700" },
-      { name: "レモン / グレープフルーツサワー", price: "¥600" },
-      { name: "焼酎（麦）", price: "¥600" },
-      { name: "コーラ / オレンジ / 烏龍茶", price: "¥300" },
-      { name: "氷追加", price: "¥200" }
+      { name: "コークハイ", price: "¥800" },
+      { name: "レモンサワー", price: "¥600" },
+      { name: "グレープフルーツサワー", price: "¥600" },
+      { name: "ピーチサワー", price: "¥600" },
+      { name: "焼酎ソーダ（麦）", price: "¥600" },
+      { name: "コーラ / オレンジ / りんご / 烏龍茶", price: "¥300" },
     ]
   },
 
@@ -229,7 +232,7 @@ const PRICE_CONFIG = {
   // 9. 料金セクションの注記
   // ----------------------------------------------------------------------------
   notesHtml: `
-    ※ 料金はすべて税込価格です。商品の受け渡しはカウンターにてお願いいたします。<br>
+    ※ 料金はすべて税込価格です。<BR>商品の受け渡しはカウンターにてお願いいたします。<br>
     ※ BBQセットやご予約に関するご相談は <a href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Instagram DM</a> またはお電話（現地担当：080-4999-0246）にて承ります。
   `
 };
