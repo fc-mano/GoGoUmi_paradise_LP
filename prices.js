@@ -174,11 +174,13 @@ const PRICE_CONFIG = {
       },
       {
         icon: "🎪",
+        image: "images/event_marche.png",
         title: "マルシェ・ワークショップ",
         desc: "ハンドメイド作家様の出店、ポップアップ、アート体験やものづくり企画に。"
       },
       {
         icon: "📸",
+        image: "images/event_photo.jpg",
         title: "撮影・オフ会・サークル",
         desc: "MV撮影、コスプレ・ポートレート撮影、ファンミーティングなどに。"
       }
