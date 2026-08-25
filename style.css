@@ -1522,11 +1522,13 @@
     .event-cat-card {
       background: #fff;
       border-radius: 20px;
-      padding: 28px 22px;
+      padding: 18px 18px 24px;
       border: 1px solid var(--line);
       box-shadow: 0 4px 18px rgba(5, 65, 90, .04);
       transition: transform .25s, box-shadow .25s;
       text-align: center;
+      display: flex;
+      flex-direction: column;
     }
 
     .event-cat-card:hover {
@@ -1534,9 +1536,28 @@
       box-shadow: 0 12px 30px rgba(5, 65, 90, .08);
     }
 
+    .event-cat-visual {
+      width: 100%;
+      height: 140px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: #f0f7fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .event-cat-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .event-cat-icon {
-      font-size: 36px;
-      margin-bottom: 12px;
+      font-size: 40px;
+      margin: 0;
+      line-height: 1;
     }
 
     .event-cat-card h4 {

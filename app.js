@@ -212,13 +212,18 @@ function renderEventSection() {
   const container = document.querySelector('#events .container');
   if (!container) return;
 
-  const categoriesHtml = (ev.categories || []).map(cat => `
+  const categoriesHtml = (ev.categories || []).map(cat => {
+    const visualContent = cat.image
+      ? `<img src="${escapeHtml(cat.image)}" alt="${escapeHtml(cat.title)}" loading="lazy" decoding="async">`
+      : `<div class="event-cat-icon">${escapeHtml(cat.icon || '')}</div>`;
+
+    return `
     <div class="event-cat-card">
-      <div class="event-cat-icon">${escapeHtml(cat.icon)}</div>
+      <div class="event-cat-visual">${visualContent}</div>
       <h4>${escapeHtml(cat.title)}</h4>
       <p>${escapeHtml(cat.desc)}</p>
-    </div>
-  `).join('\n');
+    </div>`;
+  }).join('\n');
 
   const supportListHtml = (ev.supportList || []).map(item => `
     <li>✓ ${escapeHtml(item)}</li>

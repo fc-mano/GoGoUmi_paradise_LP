@@ -29,7 +29,8 @@
  * @property {string} reserveButtonText - 予約ボタン文言
  * 
  * @typedef {Object} EventCategory
- * @property {string} icon - アイコン
+ * @property {string} [icon] - アイコン
+ * @property {string} [image] - 画像パス
  * @property {string} title - ジャンル名
  * @property {string} desc - 説明文
  * 
@@ -161,11 +162,13 @@ const PRICE_CONFIG = {
     categories: [
       {
         icon: "🎵",
+        image: "images/event_dj.jpg",
         title: "音楽・DJ・ライブ",
         desc: "波音と心地よい音楽が響くビーチパーティーやアコースティックライブに。"
       },
       {
         icon: "🧘‍♀️",
+        image: "images/event_yoga.jpg",
         title: "ビーチヨガ・フィットネス",
         desc: "朝や夕暮れの海風を感じながら行うヨガ・SUP体験・リトリートに最適。"
       },
