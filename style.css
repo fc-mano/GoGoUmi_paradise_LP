@@ -805,9 +805,10 @@
     }
 
     .price-notes {
-      text-align: center;
+      text-align: left;
       margin-top: 24px;
       font-size: 13px;
+      line-height: 1.8;
       color: #6d828a;
       background: var(--sky);
       padding: 16px 24px;
