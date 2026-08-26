@@ -232,8 +232,8 @@ const PRICE_CONFIG = {
   // 9. 料金セクションの注記
   // ----------------------------------------------------------------------------
   notesHtml: `
-    ※ 料金はすべて税込価格です。<BR>商品の受け渡しはカウンターにてお願いいたします。<br>
-    ※ BBQセットやご予約に関するご相談は <a href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Instagram DM</a> またはお電話（現地担当：080-4999-0246）にて承ります。
+    ※ 料金はすべて税込価格です。<BR> ※ 商品の受け渡しはカウンターにてお願いいたします。<br>
+    ※ BBQセットやご予約に関するご相談は <a href="https://www.instagram.com/gogoumi_paradise" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Instagram DM</a> またはお電話（現地担当　080-4999-0246）にて承ります。
   `
 };
 
