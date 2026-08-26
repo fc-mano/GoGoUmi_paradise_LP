@@ -180,7 +180,7 @@ const PRICE_CONFIG = {
       },
       {
         icon: "📸",
-        image: "images/event_photo.jpg",
+        image: "images/event_photo_v2.jpg",
         title: "撮影・オフ会・サークル",
         desc: "MV撮影、コスプレ・ポートレート撮影、ファンミーティングなどに。"
       }
