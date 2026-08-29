@@ -30,4 +30,5 @@ jobs:
           node games/common/coupon-manager.test.js
           node games/apps/watermelon-game/script.test.js
           node games/apps/bbq-game/script.test.js
-          node games/apps/acai-game/script.test.js\n
+          node games/apps/acai-game/script.test.js
+          node games/apps/acai-tower/script.test.js\n

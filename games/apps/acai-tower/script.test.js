@@ -76,6 +76,15 @@ try {
     assert.strictEqual(stack.length, 1, 'Crab should remove the top item of the stack');
     assert.strictEqual(stack[0].type, 'strawberry');
 
+    // 空スタック時のカニ接触テスト（例外が発生せず空配列が維持されること）
+    let emptyStack = [];
+    emptyStack = GameLogic.updateStack(emptyStack, GameLogic.ITEMS.crab, 0);
+    assert.strictEqual(emptyStack.length, 0, 'Crab on empty stack should remain empty without error');
+
+    // ハニー接触テスト（スタックは変化せずフィーバーのみ）
+    stack = GameLogic.updateStack(stack, GameLogic.ITEMS.honey, 0);
+    assert.strictEqual(stack.length, 1, 'Honey should not be added to the stack');
+
     // 7. 一品完成 & リセット判定テスト (isBowlComplete & calculateCompletionBonus)
     assert.strictEqual(GameLogic.COMPLETE_THRESHOLD, 5, 'Default complete threshold should be 5');
     assert.strictEqual(GameLogic.isBowlComplete(4), false);
