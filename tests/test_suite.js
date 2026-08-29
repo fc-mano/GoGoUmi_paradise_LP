@@ -423,3 +423,13 @@ test("Cloudflare Pages セキュリティルーティング (_redirects) の検�
   assert.ok(redirects.includes("/*.test.js / 404"), "テストスクリプトが 404 遮断されていること");
 });
 
+test("Cloudflare Pages レスポンスヘッダーおよびキャッシュ制御 (_headers) の検証", () => {
+  assert.ok(fs.existsSync("_headers"), "_headers ファイルが存在すること");
+  const headers = fs.readFileSync("_headers", "utf-8");
+
+  // キャッシュ制御ディレクティブの検証
+  assert.ok(headers.includes("Cache-Control: public, max-age=0, must-revalidate"), "must-revalidate キャッシュディレクティブが指定されていること");
+  assert.ok(headers.includes("X-Content-Type-Options: nosniff"), "X-Content-Type-Options が指定されていること");
+  assert.ok(headers.includes("X-Frame-Options: SAMEORIGIN"), "X-Frame-Options が指定されていること");
+});
+
