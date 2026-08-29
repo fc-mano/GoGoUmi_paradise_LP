@@ -69,13 +69,18 @@ const CouponManager = {
 
     getClaimedDate: function(gameId, storage = (typeof localStorage !== 'undefined' ? localStorage : null)) {
         if (!storage) return null;
-        const key = this.getStorageKey(gameId);
-        let val = storage.getItem(key);
-        // 後方互換性（acai-gameの旧キーからのフォールバック）
-        if (!val && gameId === 'acai') {
-            val = storage.getItem('acai_game_coupon_claimed_date');
+        try {
+            const key = this.getStorageKey(gameId);
+            let val = storage.getItem(key);
+            // 後方互換性（acai-gameの旧キーからのフォールバック）
+            if (!val && gameId === 'acai') {
+                val = storage.getItem('acai_game_coupon_claimed_date');
+            }
+            return val;
+        } catch (e) {
+            console.warn('CouponManager storage read error:', e);
+            return null;
         }
-        return val;
     },
 
     canClaimToday: function(gameId, date = new Date(), storage = (typeof localStorage !== 'undefined' ? localStorage : null)) {
@@ -86,10 +91,15 @@ const CouponManager = {
 
     claimCoupon: function(gameId, date = new Date(), storage = (typeof localStorage !== 'undefined' ? localStorage : null)) {
         if (!storage) return false;
-        const key = this.getStorageKey(gameId);
-        const today = this.getTodayDateString(date);
-        storage.setItem(key, today);
-        return true;
+        try {
+            const key = this.getStorageKey(gameId);
+            const today = this.getTodayDateString(date);
+            storage.setItem(key, today);
+            return true;
+        } catch (e) {
+            console.warn('CouponManager storage write error:', e);
+            return false;
+        }
     },
 
     getStatus: function(gameId, date = new Date(), storage = (typeof localStorage !== 'undefined' ? localStorage : null)) {

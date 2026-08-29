@@ -83,6 +83,15 @@ try {
     const unknownConfig = CouponManager.getGameConfig('unknown');
     assert.strictEqual(unknownConfig.codePrefix, 'GIFT');
 
+    // 9. 例外をスローするストレージ（Safariプライベートブラウズやクォータ超過等）のテスト
+    const throwingStorage = {
+        getItem: () => { throw new Error("SecurityError: Access is denied"); },
+        setItem: () => { throw new Error("QuotaExceededError"); }
+    };
+    assert.strictEqual(CouponManager.getClaimedDate('acai', throwingStorage), null, 'Throwing storage should return null without crash');
+    assert.strictEqual(CouponManager.canClaimToday('acai', today, throwingStorage), true, 'Throwing storage can claim by default');
+    assert.strictEqual(CouponManager.claimCoupon('acai', today, throwingStorage), false, 'Throwing storage claim returns false safely');
+
     console.log("CouponManager all tests passed!");
 } catch (e) {
     console.error("CouponManager test failed:", e.message);

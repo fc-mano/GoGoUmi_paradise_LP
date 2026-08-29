@@ -212,7 +212,7 @@ const PRICE_CONFIG = {
       { name: "カレーライス", price: "¥700" },
       { name: "バニラアイス", price: "¥300" },
       { name: "かき氷（各種）", price: "¥400" },
-      { name: "ゴゴパラアサイーボウル", price: "¥1200" }
+      { name: "ゴゴパラアサイーボウル", price: "¥1,200" }
     ],
     drinkTitle: "DRINK MENU",
     drinkItems: [

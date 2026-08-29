@@ -10,22 +10,27 @@
  * 4. FAQ アコーディオンの開閉制御
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. 料金セクションの動的レンダリング
-  renderPriceSection();
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. 料金セクションの動的レンダリング
+    renderPriceSection();
 
-  // 2. イベント募集セクションの動的レンダリング
-  renderEventSection();
+    // 2. イベント募集セクションの動的レンダリング
+    renderEventSection();
 
-  // 3. 予約リンクの一括設定
-  setupReserveLinks();
+    // 3. 予約リンクの一括設定
+    setupReserveLinks();
 
-  // 4. ナビゲーションバーのスクロール連動
-  setupNavScroll();
+    // 4. ナビゲーションバーのスクロール連動
+    setupNavScroll();
 
-  // 5. FAQアコーディオン
-  setupFaqAccordion();
-});
+    // 5. FAQアコーディオン
+    setupFaqAccordion();
+
+    // 6. 多言語切り替えドロップダウン制御
+    setupLanguageSwitcher();
+  });
+}
 
 /**
  * HTML特殊文字をエスケープして XSS (Cross-Site Scripting) を防止 (Task 19)
@@ -308,5 +313,74 @@ function setupFaqAccordion() {
       }
     });
   });
+}
+
+/**
+ * 多言語切り替えドロップダウンの開閉制御 (完全オーバーレイ・ヘッダー高さ不変)
+ */
+function setupLanguageSwitcher() {
+  const switchers = document.querySelectorAll('.lang-switcher');
+  if (!switchers.length) return;
+
+  switchers.forEach(switcher => {
+    const btn = switcher.querySelector('.lang-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = switcher.classList.contains('open');
+
+      // 画面内の全スイッチャーを閉じる
+      switchers.forEach(s => {
+        s.classList.remove('open');
+        const b = s.querySelector('.lang-btn');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        switcher.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ドロップダウン領域外のクリックで閉じる
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-switcher')) {
+      switchers.forEach(s => {
+        s.classList.remove('open');
+        const b = s.querySelector('.lang-btn');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // ESCキーで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      switchers.forEach(s => {
+        if (s.classList.contains('open')) {
+          s.classList.remove('open');
+          const b = s.querySelector('.lang-btn');
+          if (b) {
+            b.setAttribute('aria-expanded', 'false');
+            b.focus();
+          }
+        }
+      });
+    }
+  });
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    escapeHtml,
+    renderPriceSection,
+    renderEventSection,
+    setupReserveLinks,
+    setupNavScroll,
+    setupFaqAccordion,
+    setupLanguageSwitcher
+  };
 }
 
