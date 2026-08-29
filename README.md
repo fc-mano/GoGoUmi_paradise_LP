@@ -33,6 +33,7 @@
 │       ├── 001-lp-modular-architecture.md
 │       └── 002-multilingual-inbound-strategy.md
 ├── _redirects            # Cloudflare Pages セキュリティルーティング（内部ファイル遮断）
+├── _headers              # Cloudflare Pages レスポンスヘッダー（キャッシュ制御・即時反映）
 └── .github/
     └── workflows/
         └── ci.yml        # GitHub Actions CI パイプライン（LP + 多言語 + 全ゲーム一括テスト）

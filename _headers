@@ -1,0 +1,31 @@
+# ==============================================================================
+# Cloudflare Pages - HTTP Response Headers & Cache Control
+# ==============================================================================
+
+# 全リクエスト共通セキュリティヘッダー
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# HTMLファイルおよびルートパス（即時反映のため常に最新を再検証）
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/en/
+  Cache-Control: public, max-age=0, must-revalidate
+/ko/
+  Cache-Control: public, max-age=0, must-revalidate
+/zh/
+  Cache-Control: public, max-age=0, must-revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS および JavaScript（キャッシュを即座に破棄して最新を取得）
+/*.css
+  Cache-Control: public, max-age=0, must-revalidate
+/*/*.css
+  Cache-Control: public, max-age=0, must-revalidate
+/*.js
+  Cache-Control: public, max-age=0, must-revalidate
+/*/*.js
+  Cache-Control: public, max-age=0, must-revalidate
