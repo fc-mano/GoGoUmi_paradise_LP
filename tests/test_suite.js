@@ -416,11 +416,11 @@ test("Cloudflare Pages セキュリティルーティング (_redirects) の検�
   assert.ok(fs.existsSync("_redirects"), "_redirects ファイルが存在すること");
   const redirects = fs.readFileSync("_redirects", "utf-8");
 
-  // 内部ドキュメント・テストコードの 404 遮断ルール検証
-  assert.ok(redirects.includes("/docs/* / 404"), "/docs/* が 404 遮断されていること");
-  assert.ok(redirects.includes("/tests/* / 404"), "/tests/* が 404 遮断されていること");
-  assert.ok(redirects.includes("/*.md / 404"), "Markdownファイルが 404 遮断されていること");
-  assert.ok(redirects.includes("/*.test.js / 404"), "テストスクリプトが 404 遮断されていること");
+  // 内部ドキュメント・テストコードのリダイレクトルール検証
+  assert.ok(redirects.includes("/docs/* / 302"), "/docs/* が 302 リダイレクトされていること");
+  assert.ok(redirects.includes("/tests/* / 302"), "/tests/* が 302 リダイレクトされていること");
+  assert.ok(redirects.includes("/*.md / 302"), "Markdownファイルが 302 リダイレクトされていること");
+  assert.ok(redirects.includes("/*.test.js / 302"), "テストスクリプトが 302 リダイレクトされていること");
 });
 
 test("Cloudflare Pages レスポンスヘッダーおよびキャッシュ制御 (_headers) の検証", () => {
