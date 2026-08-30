@@ -412,11 +412,34 @@ test("クローラー制御設定ファイル (robots.txt / sitemap.xml) の検�
   assert.ok(sitemap.includes("<loc>https://gogoumi-paradise.com/games/</loc>"), "ゲームポータルのlocが含まれること");
 });
 
-test("Cloudflare Pages セキュリティルーティング (_redirects) の検証", () => {
+test("Cloudflare Pages セキュリティルーティング (_redirects) の検証 (Cloudflare APIバリデーション準拠)", () => {
   assert.ok(fs.existsSync("_redirects"), "_redirects ファイルが存在すること");
   const redirects = fs.readFileSync("_redirects", "utf-8");
 
-  // 内部ドキュメント・テストコードのリダイレクトルール検証
+  // Cloudflare API / Wrangler で許可されるステータスコード
+  const VALID_STATUS_CODES = [200, 301, 302, 303, 307, 308];
+
+  const lines = redirects.split("\n");
+  let ruleCount = 0;
+
+  lines.forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return; // 空行・コメントはスキップ
+
+    ruleCount++;
+    const parts = trimmed.split(/\s+/);
+    assert.ok(parts.length >= 2, `Line ${index + 1}: ルール形式が不正です (<source> <destination> [status])`);
+
+    if (parts.length >= 3) {
+      const statusCode = parseInt(parts[2], 10);
+      assert.ok(
+        VALID_STATUS_CODES.includes(statusCode),
+        `Line ${index + 1}: 無効なステータスコード (${parts[2]}) です。Cloudflare APIで許可されているのは ${VALID_STATUS_CODES.join(", ")} のみです (404等は使用不可)`
+      );
+    }
+  });
+
+  assert.ok(ruleCount >= 5, "リダイレクトルールが5件以上定義されていること");
   assert.ok(redirects.includes("/docs/* / 302"), "/docs/* が 302 リダイレクトされていること");
   assert.ok(redirects.includes("/tests/* / 302"), "/tests/* が 302 リダイレクトされていること");
   assert.ok(redirects.includes("/*.md / 302"), "Markdownファイルが 302 リダイレクトされていること");
