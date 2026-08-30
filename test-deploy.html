@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cloudflare 自動デプロイ テスト</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #eaf9ff;
+      color: #063b57;
+    }
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 420px;
+      margin: 20px;
+    }
+    h1 {
+      color: #0798cf;
+      font-size: 22px;
+      margin: 0 0 16px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 0 12px;
+    }
+    .badge {
+      display: inline-block;
+      background: #e6fffa;
+      color: #047481;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎉 自動デプロイ 疎通テスト成功！</h1>
+    <p>Git push から Cloudflare Pages / Workers への自動デプロイが正常に稼働しています。</p>
+    <div class="badge">Status: 200 OK (LIVE)</div>
+  </div>
+</body>
+</html>
