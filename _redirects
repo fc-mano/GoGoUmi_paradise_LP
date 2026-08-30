@@ -1,15 +1,15 @@
 # ==============================================================================
-# Cloudflare Pages - Redirects & Security Access Rules
+# Cloudflare - Redirects & Security Access Rules
 # ==============================================================================
-# 内部ドキュメント（ADR/仕様書）、テストコード、CI設定への直接アクセスを 404 で遮断
+# 内部ドキュメント（ADR/仕様書）、テストコードへの直接アクセスをトップページへリダイレクト (302)
 
-/docs/* / 404
-/tests/* / 404
-/*.md / 404
-/*.test.js / 404
-/games/*.md / 404
-/games/*.test.js / 404
-/games/common/*.test.js / 404
-/games/apps/*/*.md / 404
-/games/apps/*/*.test.js / 404
-/games/apps/*/package.json / 404
+/docs/* / 302
+/tests/* / 302
+/*.md / 302
+/*.test.js / 302
+/games/*.md / 302
+/games/*.test.js / 302
+/games/common/*.test.js / 302
+/games/apps/*/*.md / 302
+/games/apps/*/*.test.js / 302
+/games/apps/*/package.json / 302
