@@ -29,13 +29,13 @@
     <div class="container">
         <!-- リダイレクト遷移中およびフォールバック用の案内表示 -->
         <div id="redirect-notice" class="redirect-notice" style="display: none;">
-            <p>🏖️ <strong id="redirect-target-name">今週のゲーム</strong> へ移動中...</p>
+            <p>🏖️ <strong id="redirect-target-name">本日のゲーム</strong> へ移動中...</p>
             <p><a id="redirect-target-link" href="apps/watermelon-game/index.html" class="redirect-manual-link">自動で移動しない場合はこちらをクリック</a></p>
         </div>
 
         <noscript>
             <div class="redirect-notice" style="display: block;">
-                <p>🏖️ JavaScriptが無効です。以下のリンクから今週のゲームをプレイしてください：</p>
+                <p>🏖️ JavaScriptが無効です。以下のリンクから本日のゲームをプレイしてください：</p>
                 <p><a href="apps/watermelon-game/index.html" class="redirect-manual-link">スイカ割りタイミングゲームを遊ぶ</a></p>
             </div>
         </noscript>
@@ -46,19 +46,29 @@
         </header>
 
         <div class="game-grid">
-            <!-- ゲーム1 -->
-            <a href="apps/watermelon-game/index.html" class="game-card" data-game-id="watermelon">
-                <div class="card-badge">今週のゲーム！</div>
-                <div class="card-icon" style="background: linear-gradient(135deg, #ff8b94, #ffaaa5);">🍉</div>
+            <!-- ゲーム1: アサイーボウル職人 -->
+            <a href="apps/acai-game/index.html" class="game-card" data-game-id="acai">
+                <div class="card-badge">本日のゲーム！</div>
+                <div class="card-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">🫐</div>
                 <div class="card-content">
-                    <h2>スイカ割りタイミングゲーム</h2>
-                    <p>タイミングを合わせてタップ！真ん中を狙って綺麗なスイカを割ろう！</p>
+                    <h2>映えアサイー職人</h2>
+                    <p>一瞬だけ表示されるお手本を記憶して、完璧なアサイーボウルを再現！</p>
                 </div>
             </a>
 
-            <!-- ゲーム2 -->
+            <!-- ゲーム2: アサイータワー -->
+            <a href="apps/acai-tower/index.html" class="game-card" data-game-id="acai-tower">
+                <div class="card-badge">本日のゲーム！</div>
+                <div class="card-icon" style="background: linear-gradient(135deg, #84fab0, #8fd3f4);">🥣</div>
+                <div class="card-content">
+                    <h2>30秒アサイータワー・スタック</h2>
+                    <p>カップをスライドしてフルーツをキャッチ！30秒で豪華な映えタワーを作ろう！</p>
+                </div>
+            </a>
+
+            <!-- ゲーム3: BBQ串メーカー -->
             <a href="apps/bbq-game/index.html" class="game-card" data-game-id="bbq">
-                <div class="card-badge">今週のゲーム！</div>
+                <div class="card-badge">本日のゲーム！</div>
                 <div class="card-icon" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">🍖</div>
                 <div class="card-content">
                     <h2>爆速BBQ串メーカー</h2>
@@ -66,13 +76,13 @@
                 </div>
             </a>
 
-            <!-- ゲーム3 -->
-            <a href="apps/acai-game/index.html" class="game-card" data-game-id="acai">
-                <div class="card-badge">今週のゲーム！</div>
-                <div class="card-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">🫐</div>
+            <!-- ゲーム4: スイカ割り -->
+            <a href="apps/watermelon-game/index.html" class="game-card" data-game-id="watermelon">
+                <div class="card-badge">本日のゲーム！</div>
+                <div class="card-icon" style="background: linear-gradient(135deg, #ff8b94, #ffaaa5);">🍉</div>
                 <div class="card-content">
-                    <h2>映えアサイー職人</h2>
-                    <p>一瞬だけ表示されるお手本を記憶して、完璧なアサイーボウルを再現！</p>
+                    <h2>スイカ割りタイミングゲーム</h2>
+                    <p>タイミングを合わせてタップ！真ん中を狙って綺麗なスイカを割ろう！</p>
                 </div>
             </a>
         </div>
@@ -95,7 +105,7 @@
                         var nameEl = document.getElementById('redirect-target-name');
                         var linkEl = document.getElementById('redirect-target-link');
                         if (notice && nameEl && linkEl) {
-                            nameEl.textContent = target.game ? target.game.name : '今週のゲーム';
+                            nameEl.textContent = target.game ? target.game.name : '本日のゲーム';
                             linkEl.href = target.redirectUrl;
                             notice.style.display = 'block';
                         }

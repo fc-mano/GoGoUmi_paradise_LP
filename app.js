@@ -33,7 +33,7 @@ if (typeof document !== 'undefined') {
 }
 
 /**
- * HTML特殊文字をエスケープして XSS (Cross-Site Scripting) を防止 (Task 19)
+ * HTML特殊文字をエスケープして XSS (Cross-Site Scripting) を防止
  * @param {string} str
  * @returns {string}
  */

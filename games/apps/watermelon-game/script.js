@@ -36,7 +36,7 @@ const GameLogic = {
     }
 };
 
-// Node.js環境（Jest等のテストランナー）向けのエクスポート処理
+// CommonJS module export
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { GameLogic };
 } else {
