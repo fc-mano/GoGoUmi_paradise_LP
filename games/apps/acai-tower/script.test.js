@@ -174,16 +174,21 @@ try {
     assert.strictEqual(specialResult.extraScore, 1200);
     assert.strictEqual(specialResult.totalScore, 1700); // 500 + 1200
 
-    // 8. ランク評価 & クーポン付与テスト (getRank & isEligibleForCoupon)
-    assert.deepStrictEqual(GameLogic.getRank(3600), { rank: 'S', title: '👑 伝説のアサイーマスター' });
-    assert.deepStrictEqual(GameLogic.getRank(2500), { rank: 'A', title: '🌟 プロアサイー職人' });
-    assert.deepStrictEqual(GameLogic.getRank(1800), { rank: 'B', title: '🍓 一人前スタッフ' });
-    assert.deepStrictEqual(GameLogic.getRank(800), { rank: 'C', title: '🫐 見習いスタッフ' });
+    // 8. ランク評価 & クーポン付与テスト (S:15000〜, A:10000〜, B:5000〜, C:〜4999)
+    assert.deepStrictEqual(GameLogic.getRank(16000), { rank: 'S', title: '👑 伝説のアサイーマスター' });
+    assert.deepStrictEqual(GameLogic.getRank(15000), { rank: 'S', title: '👑 伝説のアサイーマスター' });
+    assert.deepStrictEqual(GameLogic.getRank(14999), { rank: 'A', title: '🌟 プロアサイー職人' });
+    assert.deepStrictEqual(GameLogic.getRank(10000), { rank: 'A', title: '🌟 プロアサイー職人' });
+    assert.deepStrictEqual(GameLogic.getRank(9999), { rank: 'B', title: '🍓 一人前スタッフ' });
+    assert.deepStrictEqual(GameLogic.getRank(5000), { rank: 'B', title: '🍓 一人前スタッフ' });
+    assert.deepStrictEqual(GameLogic.getRank(4999), { rank: 'C', title: '🫐 見習いスタッフ' });
+    assert.deepStrictEqual(GameLogic.getRank(0), { rank: 'C', title: '🫐 見習いスタッフ' });
 
-    assert.strictEqual(GameLogic.isEligibleForCoupon(3500), true);
-    assert.strictEqual(GameLogic.isEligibleForCoupon(2200), true);
-    assert.strictEqual(GameLogic.isEligibleForCoupon(2199), false);
-    assert.strictEqual(GameLogic.isEligibleForCoupon(1000), false);
+    assert.strictEqual(GameLogic.isEligibleForCoupon(15000), true);
+    assert.strictEqual(GameLogic.isEligibleForCoupon(10000), true);
+    assert.strictEqual(GameLogic.isEligibleForCoupon(9999), false);
+    assert.strictEqual(GameLogic.isEligibleForCoupon(5000), false);
+    assert.strictEqual(GameLogic.isEligibleForCoupon(0), false);
 
     console.log("✅ All tests passed successfully!");
 } catch (e) {

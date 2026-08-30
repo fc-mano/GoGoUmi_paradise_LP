@@ -181,17 +181,17 @@ const GameLogic = {
         };
     },
 
-    // ランク評価
+    // ランク評価 (Aランク10,000点をクーポン付与基準として設定)
     getRank: function(score) {
-        if (score >= 3500) return { rank: 'S', title: '👑 伝説のアサイーマスター' };
-        if (score >= 2200) return { rank: 'A', title: '🌟 プロアサイー職人' };
-        if (score >= 1200) return { rank: 'B', title: '🍓 一人前スタッフ' };
+        if (score >= 15000) return { rank: 'S', title: '👑 伝説のアサイーマスター' };
+        if (score >= 10000) return { rank: 'A', title: '🌟 プロアサイー職人' };
+        if (score >= 5000) return { rank: 'B', title: '🍓 一人前スタッフ' };
         return { rank: 'C', title: '🫐 見習いスタッフ' };
     },
 
-    // クーポン付与資格判定
+    // クーポン付与資格判定 (Aランク以上 / 10,000点以上で付与)
     isEligibleForCoupon: function(score) {
-        return score >= 2200;
+        return score >= 10000;
     }
 };
 
@@ -1007,7 +1007,7 @@ if (typeof module !== 'undefined' && module.exports) {
                     couponBtn.textContent = '🎫 獲得済みクーポンを見る';
                 } else {
                     CouponManager.claimCoupon('acai-tower');
-                    couponMsg.innerHTML = '🎉 <strong>Aランク達成！トッピング無料クーポンGET！</strong>';
+                    couponMsg.innerHTML = `🎉 <strong>${rankInfo.rank}ランク達成！トッピング無料クーポンGET！</strong>`;
                     couponBtn.classList.remove('hidden');
                     couponBtn.textContent = '🎫 クーポンを受け取る';
                 }
