@@ -49,7 +49,8 @@ const CouponManager = {
             codePrefix: 'BBQ',
             icon: '🍖',
             theme: 'bbq',
-            image: '',
+            // BBQクーポン引換用イメージ画像を設定
+            image: 'images/bbq_coupon.jpg',
             backUrl: '../apps/bbq-game/index.html'
         }
     },
