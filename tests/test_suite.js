@@ -330,6 +330,7 @@ test("games/ ディレクトリおよび設定ファイルの整合性検証 (�
   assert.ok(fs.existsSync("games/apps/acai-game/index.html"), "アサイー職人ゲームが存在すること");
   assert.ok(fs.existsSync("games/apps/acai-tower/index.html"), "アサイータワーゲームが存在すること");
   assert.ok(fs.existsSync("games/apps/frankfurt-game/index.html"), "フランクフルトゲームが存在すること");
+  assert.ok(fs.existsSync("games/apps/janken-game/index.html"), "じゃんけんゲームが存在すること");
 
   // index.html（リダイレクト専用）のフォールバック・スクリプト構造検証
   const indexHtml = fs.readFileSync("games/index.html", "utf-8");
