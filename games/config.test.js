@@ -30,6 +30,11 @@ try {
     assert.strictEqual(resAcaiTower.key, 'acai-tower');
     assert.strictEqual(resAcaiTower.redirectUrl, 'apps/acai-tower/index.html');
 
+    const configFrankfurt = { ...GAME_CONFIG, activeGame: 'frankfurt' };
+    const resFrankfurt = resolveActiveGame(configFrankfurt, '');
+    assert.strictEqual(resFrankfurt.key, 'frankfurt');
+    assert.strictEqual(resFrankfurt.redirectUrl, 'apps/frankfurt-game/index.html');
+
     // 3. activeGame: 'portal' の場合は一覧表示
     const configPortal = { ...GAME_CONFIG, activeGame: 'portal' };
     const resPortal = resolveActiveGame(configPortal, '');
@@ -50,30 +55,30 @@ try {
     assert.strictEqual(resParamOverride.key, 'bbq');
     assert.strictEqual(resParamOverride.redirectUrl, 'apps/bbq-game/index.html');
 
-    // 6. 日替わりローテーション（activeGame: 'daily'）の日付別テスト
-    // 8/31 -> acai
+    // 6. 日替わりローテーション（activeGame: 'daily'）の5日周期テスト
+    // 8/31 (Day 0) -> acai
     const res831 = resolveActiveGame(GAME_CONFIG, '', new Date('2026-08-31T09:00:00+09:00'));
     assert.strictEqual(res831.key, 'acai');
 
-    // 9/1 -> acai-tower
+    // 9/1 (Day 1) -> acai-tower
     const res901 = resolveActiveGame(GAME_CONFIG, '', new Date('2026-09-01T15:30:00+09:00'));
     assert.strictEqual(res901.key, 'acai-tower');
 
-    // 9/2 -> bbq
+    // 9/2 (Day 2) -> bbq
     const res902 = resolveActiveGame(GAME_CONFIG, '', new Date('2026-09-02T23:59:59+09:00'));
     assert.strictEqual(res902.key, 'bbq');
 
-    // 9/3 -> watermelon
+    // 9/3 (Day 3) -> watermelon
     const res903 = resolveActiveGame(GAME_CONFIG, '', new Date('2026-09-03T00:00:01+09:00'));
     assert.strictEqual(res903.key, 'watermelon');
 
-    // 9/4 -> 循環して acai
+    // 9/4 (Day 4) -> frankfurt
     const res904 = resolveActiveGame(GAME_CONFIG, '', new Date('2026-09-04T12:00:00+09:00'));
-    assert.strictEqual(res904.key, 'acai');
+    assert.strictEqual(res904.key, 'frankfurt');
 
-    // 9/5 -> acai-tower
+    // 9/5 (Day 5) -> 循環して acai (Day 0)
     const res905 = resolveActiveGame(GAME_CONFIG, '', new Date('2026-09-05T12:00:00+09:00'));
-    assert.strictEqual(res905.key, 'acai-tower');
+    assert.strictEqual(res905.key, 'acai');
 
     // 7. ゲーム数変更（動的周期）のテスト: 3ゲームの場合（3日周期）
     const config3Games = {

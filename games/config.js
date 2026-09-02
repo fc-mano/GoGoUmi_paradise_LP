@@ -27,7 +27,8 @@ const GAME_CONFIG = {
             'acai',        // 8/31 (Day 0)
             'acai-tower',  // 9/1  (Day 1)
             'bbq',         // 9/2  (Day 2)
-            'watermelon'   // 9/3  (Day 3)
+            'watermelon',  // 9/3  (Day 3)
+            'frankfurt'    // 9/4  (Day 4)
         ]
     },
 
@@ -68,6 +69,13 @@ const GAME_CONFIG = {
             icon: '🥣',
             path: 'apps/acai-tower/index.html',
             description: 'カップをスライドしてフルーツをキャッチ！30秒で豪華な映えタワーを作ろう！'
+        },
+        'frankfurt': {
+            id: 'frankfurt',
+            name: '最後の一本フランクフルト',
+            icon: '🌭',
+            path: 'apps/frankfurt-game/index.html',
+            description: '合図が出たら素早くタップ！ライバルから最後の一本を奪い取れ！'
         }
     },
 

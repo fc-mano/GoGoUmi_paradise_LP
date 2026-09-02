@@ -1007,7 +1007,8 @@ if (typeof module !== 'undefined' && module.exports) {
                     couponBtn.textContent = '🎫 獲得済みクーポンを見る';
                 } else {
                     CouponManager.claimCoupon('acai-tower');
-                    couponMsg.innerHTML = `🎉 <strong>${rankInfo.rank}ランク達成！トッピング無料クーポンGET！</strong>`;
+                    // 他ミニゲームと統一された特典内容（アイストッピング追加 or 100円引き）を案内
+                    couponMsg.innerHTML = `🎉 <strong>${rankInfo.rank}ランク達成！アイストッピング or 100円引きクーポンGET！</strong>`;
                     couponBtn.classList.remove('hidden');
                     couponBtn.textContent = '🎫 クーポンを受け取る';
                 }
