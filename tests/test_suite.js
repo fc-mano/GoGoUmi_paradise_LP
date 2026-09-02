@@ -322,12 +322,70 @@ test("style.css デザイントークンおよびレイアウト定義の検証"
 // ==========================================
 test("games/ ディレクトリおよび設定ファイルの整合性検証 (全ゲーム)", () => {
   assert.ok(fs.existsSync("games/index.html"), "games/index.html が存在すること");
+  assert.ok(fs.existsSync("games/portal.html"), "ゲーム一覧ポータル (games/portal.html) が存在すること");
   assert.ok(fs.existsSync("games/config.js"), "games/config.js が存在すること");
   assert.ok(fs.existsSync("games/common/coupon-manager.js"), "coupon-manager.js が存在すること");
   assert.ok(fs.existsSync("games/apps/watermelon-game/index.html"), "スイカ割りゲームが存在すること");
   assert.ok(fs.existsSync("games/apps/bbq-game/index.html"), "BBQゲームが存在すること");
   assert.ok(fs.existsSync("games/apps/acai-game/index.html"), "アサイー職人ゲームが存在すること");
   assert.ok(fs.existsSync("games/apps/acai-tower/index.html"), "アサイータワーゲームが存在すること");
+  assert.ok(fs.existsSync("games/apps/frankfurt-game/index.html"), "フランクフルトゲームが存在すること");
+
+  // index.html（リダイレクト専用）のフォールバック・スクリプト構造検証
+  const indexHtml = fs.readFileSync("games/index.html", "utf-8");
+  assert.ok(indexHtml.includes("resolveActiveGame"), "index.html に resolveActiveGame の呼び出しが含まれること");
+  assert.ok(indexHtml.includes("window.location.replace"), "履歴汚染防止のための window.location.replace が使用されていること");
+  assert.ok(indexHtml.includes('href="portal.html"'), "リダイレクト失敗・非JS時用の portal.html への手動導線が存在すること");
+  assert.ok(indexHtml.includes("<noscript>"), "JS無効環境対応の noscript タグが存在すること");
+  assert.ok(indexHtml.includes("pageshow"), "Safari WebKit等のBFCache復帰時に即時再転送する pageshow リスナーが存在すること");
+
+  // portal.html（ゲーム一覧専用）の構成要素検証
+  const portalHtml = fs.readFileSync("games/portal.html", "utf-8");
+  assert.ok(portalHtml.includes('data-game-id="watermelon"'), "portal.html にスイカ割りカードが存在すること");
+  assert.ok(portalHtml.includes('data-game-id="bbq"'), "portal.html にBBQカードが存在すること");
+  assert.ok(portalHtml.includes('data-game-id="acai"'), "portal.html にアサイーカードが存在すること");
+  assert.ok(portalHtml.includes('data-game-id="acai-tower"'), "portal.html にアサイータワーカードが存在すること");
+  assert.ok(portalHtml.includes('data-game-id="frankfurt"'), "portal.html にフランクフルトカードが存在すること");
+  assert.ok(portalHtml.includes("is-featured"), "本日のゲーム強調ロジック (is-featured) が実装されていること");
+
+  // 全5ゲームにおける index.html への不正な戻り導線（リダイレクトループ原因）の非存在検証
+  const gameFiles = [
+    "games/apps/watermelon-game/index.html",
+    "games/apps/bbq-game/index.html",
+    "games/apps/acai-game/index.html",
+    "games/apps/acai-tower/index.html",
+    "games/apps/frankfurt-game/index.html"
+  ];
+  for (const gameFile of gameFiles) {
+    const content = fs.readFileSync(gameFile, "utf-8");
+    assert.ok(!content.includes('href="../../index.html"'), `${gameFile} に index.html への不正リンクが含まれないこと`);
+  }
+
+  // BBQゲーム誤タップ防止シーケンス（ボタン即時無効化・800ms演出・500msガード）の検証
+  const bbqScript = fs.readFileSync("games/apps/bbq-game/script.js", "utf-8");
+  assert.ok(bbqScript.includes("btn.disabled = true"), "BBQゲーム終了時に具材ボタンが即時無効化されること");
+  assert.ok(bbqScript.includes("800"), "BBQゲーム終了時に800msのTIME UP演出インターバルが存在すること");
+  assert.ok(bbqScript.includes("500"), "BBQゲームのリザルトモーダル表示後に500msのボタンガードが存在すること");
+
+  // 各ゲーム内ポータル導線およびCI設定の整合性検証
+  const frankfurtHtml = fs.readFileSync("games/apps/frankfurt-game/index.html", "utf-8");
+  assert.ok(frankfurtHtml.includes('href="../../portal.html"'), "frankfurt-game から portal.html への戻り導線が正しく設定されていること");
+
+  const acaiTowerHtml = fs.readFileSync("games/apps/acai-tower/index.html", "utf-8");
+  assert.ok(acaiTowerHtml.includes('href="../../portal.html"'), "acai-tower から portal.html への戻り導線が正しく設定されていること");
+
+  const couponManagerJs = fs.readFileSync("games/common/coupon-manager.js", "utf-8");
+  assert.ok(couponManagerJs.includes("backUrl: '../portal.html'"), "coupon-manager.js のフォールバック backUrl が portal.html を向いていること");
+
+  const couponHtml = fs.readFileSync("games/common/coupon.html", "utf-8");
+  assert.ok(couponHtml.includes('href="../portal.html"'), "coupon.html のフォールバック戻り導線が portal.html を向いていること");
+
+  const ciYml = fs.readFileSync(".github/workflows/ci.yml", "utf-8");
+  assert.ok(ciYml.includes("games/apps/frankfurt-game/script.test.js"), "CI workflow に frankfurt-game のテストが含まれていること");
+  assert.ok(ciYml.includes("games/apps/bbq-game/script.test.js"), "CI workflow に bbq-game のテストが含まれていること");
+  assert.ok(ciYml.includes("games/apps/acai-tower/script.test.js"), "CI workflow に acai-tower のテストが含まれていること");
+  assert.ok(ciYml.includes("games/apps/acai-game/script.test.js"), "CI workflow に acai-game のテストが含まれていること");
+  assert.ok(ciYml.includes("games/apps/watermelon-game/script.test.js"), "CI workflow に watermelon-game のテストが含まれていること");
 });
 
 // ==========================================
@@ -341,6 +399,16 @@ test("SEOメタタグ・OGP・Twitterカードの検証", () => {
   assert.ok(html.includes('<meta name="description"'), "meta description が存在すること");
   assert.ok(html.includes('<meta name="robots" content="index, follow">'), "robots meta tag が存在すること");
   assert.ok(html.includes('<link rel="canonical" href="https://gogoumi-paradise.com/">'), "canonical リンクが存在すること");
+
+  // Hreflang タグの全言語双方向検証
+  for (const lang of LANGUAGES) {
+    const langHtml = fs.readFileSync(lang.htmlFile, "utf-8");
+    assert.ok(langHtml.includes('hreflang="ja"'), `[${lang.code}] hreflang="ja" が存在すること`);
+    assert.ok(langHtml.includes('hreflang="en"'), `[${lang.code}] hreflang="en" が存在すること`);
+    assert.ok(langHtml.includes('hreflang="zh-TW"'), `[${lang.code}] hreflang="zh-TW" が存在すること`);
+    assert.ok(langHtml.includes('hreflang="ko"'), `[${lang.code}] hreflang="ko" が存在すること`);
+    assert.ok(langHtml.includes('hreflang="x-default"'), `[${lang.code}] hreflang="x-default" が存在すること`);
+  }
 
   // OGP Tags
   assert.ok(html.includes('<meta property="og:type" content="website">'), "og:type が存在すること");
