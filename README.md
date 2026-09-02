@@ -17,15 +17,18 @@
 ├── ko/                   # 韓国語版LP（index.html, prices.js）※インバウンド最適化
 ├── zh/                   # 繁体字中国語版LP（index.html, prices.js）※インバウンド最適化
 ├── games/                # 海の家 ミニゲームコレクション（WebGames）
-│   ├── index.html        # ゲームポータル / 週替わりリダイレクト
-│   ├── config.js         # 今週のゲーム・運用スケジュール設定
+│   ├── index.html        # ゲーム自動リダイレクト専用エントリー
+│   ├── portal.html       # ゲーム一覧ポータル
+│   ├── config.js         # 今日のゲーム・日替わり運用スケジュール設定
 │   ├── config.test.js    # 設定・リダイレクト判定テスト
 │   ├── style.css         # ポータル画面用スタイル
 │   ├── common/           # 共通コンポーネント（クーポンマネージャー等）
 │   └── apps/             # 各ミニゲーム
 │       ├── watermelon-game/ # スイカ割りタイミングゲーム
 │       ├── bbq-game/        # 爆速BBQ串メーカー
-│       └── acai-game/       # 映えアサイー職人
+│       ├── acai-game/       # 映えアサイー職人
+│       ├── acai-tower/      # 30秒アサイータワー・スタック
+│       └── frankfurt-game/  # 最後の一本フランクフルト
 ├── tests/
 │   └── test_suite.js     # 自動統合テストスイート（スキーマ検証・マスター突合・CI連動）
 ├── docs/
@@ -97,6 +100,7 @@ node games/apps/watermelon-game/script.test.js
 node games/apps/bbq-game/script.test.js
 node games/apps/acai-game/script.test.js
 node games/apps/acai-tower/script.test.js
+node games/apps/frankfurt-game/script.test.js
 ```
 
 ---
@@ -116,4 +120,4 @@ node games/apps/acai-tower/script.test.js
 
 設計判断の意図（Why）や詳細については以下の ADR をご参照ください。
 * [ADR 001: LPモジュール分離と品質設計方針](docs/adr/001-lp-modular-architecture.md)
-* [ADR 002: 多言語対応とインバウンド向けコンテンツ最適化方針](docs/adr/002-multilingual-inbound-strategy.md)\n
+* [ADR 002: 多言語対応とインバウンド向けコンテンツ最適化方針](docs/adr/002-multilingual-inbound-strategy.md)

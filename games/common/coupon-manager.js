@@ -53,6 +53,18 @@ const CouponManager = {
             // BBQクーポン引換用イメージ画像を設定
             image: 'images/bbq_coupon.jpg',
             backUrl: '../apps/bbq-game/index.html'
+        },
+        'frankfurt': {
+            id: 'frankfurt',
+            name: '最後の一本フランクフルト',
+            title: '最後の一本フランクフルト チャレンジ成功',
+            benefit: 'バニラアイストッピング追加 または 100円引き',
+            description: '店頭注文時にこちらの画面をご提示いただくと、バニラアイストッピングを追加、または合計金額から100円引きいたします！',
+            codePrefix: 'FRANK',
+            icon: '🌭',
+            theme: 'frankfurt',
+            image: 'images/frankfurt_coupon.jpg',
+            backUrl: '../apps/frankfurt-game/index.html'
         }
     },
 
@@ -136,7 +148,7 @@ const CouponManager = {
             description: '店頭注文時にこちらの画面をご提示ください。',
             codePrefix: 'GIFT',
             icon: '🏖️',
-            backUrl: '../../index.html'
+            backUrl: '../portal.html'
         };
     }
 };

@@ -88,6 +88,15 @@ try {
     assert.strictEqual(bbqConfig.benefit, 'バニラアイストッピング追加 または 100円引き');
     assert.strictEqual(bbqConfig.image, 'images/bbq_coupon.jpg');
 
+    const frankfurtConfig = CouponManager.getGameConfig('frankfurt');
+    assert.strictEqual(frankfurtConfig.name, '最後の一本フランクフルト');
+    assert.strictEqual(frankfurtConfig.codePrefix, 'FRANK');
+    assert.strictEqual(frankfurtConfig.theme, 'frankfurt');
+    assert.strictEqual(frankfurtConfig.icon, '🌭');
+    assert.strictEqual(frankfurtConfig.benefit, 'バニラアイストッピング追加 または 100円引き');
+    assert.strictEqual(frankfurtConfig.image, 'images/frankfurt_coupon.jpg');
+    assert.strictEqual(frankfurtConfig.backUrl, '../apps/frankfurt-game/index.html');
+
     const unknownConfig = CouponManager.getGameConfig('unknown');
     assert.strictEqual(unknownConfig.codePrefix, 'GIFT');
 
