@@ -85,8 +85,10 @@ function renderPriceSection() {
     const priceStyle = safeFontSize ? ` style="font-size:${safeFontSize};margin:8px 0 6px"` : '';
     const taxHtml = plan.tax ? `<span class="price-tax">${escapeHtml(plan.tax)}</span>` : '';
     const listHtml = (plan.list || []).map(item => `<li>${escapeHtml(item)}</li>`).join('');
+    const isClosed = plan.reserveButtonText && (plan.reserveButtonText.includes('終了') || plan.reserveButtonText.includes('Closed') || plan.reserveButtonText.includes('結束'));
+    const btnClass = 'btn-reserve-featured' + (isClosed ? ' btn-disabled' : '');
     const btnHtml = plan.hasReserveButton
-      ? `<a class="btn-reserve-featured" href="${encodeURI(reserveUrl)}" data-reserve-link target="_blank" rel="noopener noreferrer">${escapeHtml(plan.reserveButtonText)}</a>`
+      ? `<a class="${btnClass}" href="${isClosed ? '#' : encodeURI(reserveUrl)}" ${isClosed ? 'aria-disabled="true"' : 'data-reserve-link target="_blank" rel="noopener noreferrer"'}>${escapeHtml(plan.reserveButtonText)}</a>`
       : '';
 
     return `
@@ -163,7 +165,11 @@ function renderPriceSection() {
       <div class="base-price-box">
         <div class="base-amount">${escapeHtml(cfg.basePrice.price)}<span class="price-tax">${escapeHtml(cfg.basePrice.tax)}</span></div>
         <div class="base-unit">${escapeHtml(cfg.basePrice.unit)}</div>
-        <a class="btn-reserve-sm" href="${encodeURI(reserveUrl)}" data-reserve-link target="_blank" rel="noopener noreferrer" style="margin-top:10px">${escapeHtml(cfg.basePrice.reserveButtonText)}</a>
+        ${(() => {
+          const isClosed = cfg.basePrice.reserveButtonText && (cfg.basePrice.reserveButtonText.includes('終了') || cfg.basePrice.reserveButtonText.includes('Closed') || cfg.basePrice.reserveButtonText.includes('結束'));
+          const btnClass = 'btn-reserve-sm' + (isClosed ? ' btn-disabled' : '');
+          return `<a class="${btnClass}" href="${isClosed ? '#' : encodeURI(reserveUrl)}" ${isClosed ? 'aria-disabled="true"' : 'data-reserve-link target="_blank" rel="noopener noreferrer"'} style="margin-top:10px">${escapeHtml(cfg.basePrice.reserveButtonText)}</a>`;
+        })()}
       </div>
     </div>
   </div>

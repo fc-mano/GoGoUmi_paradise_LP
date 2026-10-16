@@ -462,7 +462,7 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1.2fr .8fr .8fr;
+      grid-template-columns: 1.2fr 1fr;
       grid-template-rows: 260px 260px;
       gap: 12px;
       margin-top: 45px
@@ -470,10 +470,6 @@
 
     .gallery-grid .g1 {
       grid-row: span 2
-    }
-
-    .gallery-grid .g4 {
-      grid-column: 2 / span 2
     }
 
     .g {
@@ -1277,15 +1273,11 @@
 
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 220px 220px
+        grid-template-rows: 220px 220px;
       }
 
       .gallery-grid .g1 {
         grid-row: span 2
-      }
-
-      .gallery-grid .g4 {
-        grid-column: 1 / span 2
       }
 
       .bbq-grid .photo {
@@ -1369,15 +1361,11 @@
 
       .gallery-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: 260px 200px 200px 200px
+        grid-template-rows: 260px 200px 200px;
       }
 
       .gallery-grid .g1 {
         grid-row: span 1
-      }
-
-      .gallery-grid .g4 {
-        grid-column: 1
       }
 
       .float-bar {
@@ -1923,6 +1911,114 @@
       .access-map {
         height: 260px;
       }
+    }
+
+    /* ==========================================================================
+       Off-season Banner & Disabled Button Styles
+       ========================================================================== */
+    .offseason-section {
+      position: relative;
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      padding: 90px 20px;
+    }
+
+    .offseason-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .offseason-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      filter: brightness(0.72) contrast(1.08);
+      transform: scale(1.02);
+    }
+
+    .offseason-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(circle at center, rgba(16, 32, 48, 0.45) 0%, rgba(10, 20, 32, 0.78) 100%);
+    }
+
+    .offseason-content {
+      position: relative;
+      z-index: 3;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .offseason-title {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-size: clamp(40px, 6.5vw, 68px);
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: .05em;
+      line-height: 1.2;
+      margin-bottom: 28px;
+      color: #ffffff;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, .75);
+    }
+
+    .offseason-desc {
+      font-size: clamp(16px, 2.2vw, 22px);
+      line-height: 2.1;
+      color: rgba(255, 255, 255, .96);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, .7);
+      margin: 0 auto;
+      font-weight: 500;
+      letter-spacing: .03em;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .offseason-desc span {
+      display: inline-block;
+    }
+
+    .offseason-badge {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 7px 20px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, .3);
+      font-size: 13px;
+      letter-spacing: .08em;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Disabled button styles for off-season */
+    .btn-disabled,
+    a.btn-disabled {
+      background: rgba(148, 163, 184, 0.45) !important;
+      color: rgba(255, 255, 255, 0.75) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+      cursor: not-allowed !important;
+      pointer-events: none !important;
+      box-shadow: none !important;
+      transform: none !important;
+      filter: grayscale(0.8);
+      user-select: none;
+    }
+
+    .float-reserve.btn-disabled {
+      background: #64748b !important;
+      color: #cbd5e1 !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .25) !important;
     }
 
 
